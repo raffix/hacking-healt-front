@@ -1,0 +1,29 @@
+.NavigationFormFocus {
+    background-color: #400A07;
+    min-height: 30vh;
+  }
+  
+  .NavigationFormPrevious {
+    min-height: 32vh;
+    width: 90vh;
+    margin-left: 40vh;
+  }
+  
+  .NavigationFormNext {
+    min-height: 32vh;
+    width: 90vh;
+    margin-left: 40vh;
+  }
+  
+  .NavigationInputContainer {
+    width: 90vh;
+    margin-left: 40vh;
+  }
+  
+  .underNavigation{
+    position: absolute;
+  min-width: 200px;
+  min-height: 200px;
+    background-color: '#fff';
+		z-index: 2;
+  }

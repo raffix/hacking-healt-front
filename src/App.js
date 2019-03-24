@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './styles/App.css';
+import './styles/NavigationFormStyle.css';
+import './styles/InputTextStyle.css';
+import './styles/ActionsButtonsStyle.css';
+import NavigationFormComponent from './components/NavigationFormComponent';
+
+const inputs = [
+  {
+    "id": "nome",
+    "title": "Sobre a criança",
+    "subtitle": "Nome completo",
+    "hint": "Informe o nome completo da criança",
+    "placeholder": "Digite aqui"
+  }, {
+    "id": "input2",
+    "title": "Input 2",
+    "subtitle": "Input 2",
+    "hint": "Input 2",
+    "placeholder": "Digite aqui"
+  }, {
+    "id": "input3",
+    "title": "Input 3",
+    "subtitle": "Input 3",
+    "hint": "Input 3",
+    "placeholder": "Digite aqui"
+  }, {
+    "id": "input4",
+    "title": "Input 4",
+    "subtitle": "Input 4",
+    "hint": "Input 4",
+    "placeholder": "Digite aqui"
+  },
+
+
+];
 
 class App extends Component {
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <NavigationFormComponent inputs={inputs} />
       </div>
     );
   }
