@@ -5,13 +5,19 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import App from './App';
-import Sobre from './Sobre';
+import SobreCrianca from './screens/SobreCrianca';
+import SobreMateriais from './screens/SobreMateriais';
+import FormularioCrianca from './screens/FormularioCrianca';
+import FormularioMateriais from './screens/FormularioMateriais';
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route path="/" exact={true} component={App} />
-            <Route path="/sobre" component={Sobre} />
+            <Route path="/FormularioCrianca" component={FormularioCrianca} />
+            <Route path="/FormularioMateriais" component={FormularioMateriais} />
+            <Route path="/SobreCrianca" component={SobreCrianca} />
+            <Route path="/SobreMateriais" component={SobreMateriais} />
         </Switch>
     </ BrowserRouter>
     , document.getElementById('root'));
