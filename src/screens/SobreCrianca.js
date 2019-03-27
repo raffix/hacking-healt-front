@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import './App.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import './../styles/ActionsButtonsStyle.css';
 
 
 class Sobre extends Component {
@@ -13,7 +13,8 @@ class Sobre extends Component {
           É um formulário extenso que solicitará uma série de informações sobre a criança e responsáveis. Fundamental preencher este formulário com o máximo de informação, pois as informações providas servirão de base à equipe de acolhimento direcionar devidamente a requisição.</p><p><b>Tem ciência que o Shriners é uma entidade paramaçônica e concorda em fornecer as informações solicitadas neste formulário que serão utilizadas únca e exclusivamente para questões de triagem e encaminhamento?</b></p>
         </header>
         <p className="App-intro">
-          <Link to="/">Ir para a página home \o/</Link>
+            <span> <Link to="/FormularioCrianca" className="ActionsButtonsPrimary">Sim</Link> </span>
+            <span> <Link to="/" className="ActionsButtonsPrimary">Não</Link> </span>
         </p>
       </div>
     );

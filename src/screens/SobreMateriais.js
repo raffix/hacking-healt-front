@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import './../styles/ActionsButtonsStyle.css';
 
 
 class Sobre extends Component {
@@ -10,7 +11,8 @@ class Sobre extends Component {
           <h1 className="App-title">Página de Sobre</h1>
         </header>
         <p className="App-intro">
-          <Link to="/">Ir para a página home \o/</Link>
+          <span> <Link to="/FormularioCrianca" className="ActionsButtonsPrimary">Sim</Link> </span>
+          <span> <Link to="/" className="ActionsButtonsPrimary">Não</Link> </span>
         </p>
       </div>
     );

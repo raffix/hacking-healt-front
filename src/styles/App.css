@@ -33,7 +33,13 @@ ul li {
   float: left;
 }
 
-.HomeLinks,
+.half {
+  display: inline-flex;
+  width: 50%;
+  float: left;
+}
+
+.HomeButton,
 button {
   background-color: #CE9F73;
   color: #400A07;
@@ -42,6 +48,17 @@ button {
   text-decoration: none;
   margin: 5px;
   display: inline-block;
+}
+
+.HomeButton:hover,
+button:hover {
+
+}
+
+
+.HomeButton {
+  width: 300px;
+  text-align: center;
 }
 
 @keyframes App-logo-spin {

@@ -14,8 +14,8 @@ class App extends Component {
         <div className="half">
           <ul>
             <li> <h2>Escolha uma requisição</h2> </li>
-            <li> <Link to="/SobreCrianca" className="HomeLinks">Atendimento a criança</Link> </li>
-            <li> <Link to="/SobreMateriais" className="HomeLinks">Materiais / Produtos</Link> </li>
+            <li> <Link to="/SobreCrianca" className="HomeButton">Atendimento a criança</Link> </li>
+            <li> <Link to="/SobreMateriais" className="HomeButton">Materiais / Produtos</Link> </li>
           </ul>
         </div>
         <div id="imagem" className="half">
