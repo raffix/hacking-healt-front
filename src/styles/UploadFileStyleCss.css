@@ -1,0 +1,35 @@
+.CarregaArquivo{
+  width: 90vh;
+  margin-left: 40vh;
+  border: 1px solid #fff;
+  align-items: center;
+  border-radius:5px;
+  padding-top:5vh;
+}
+
+.CarregaArquivo h3{
+  text-align: center;
+  margin-top: -3vh;
+  margin-left: 32vh;
+  margin-bottom: 5vh;
+  font-size: 13px;
+  border: 1px solid #CE9F73;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  border-radius: 5px;
+  width: 25vh;
+  font-weight: bold;
+  background: #CE9F73;
+  color: #58120D;
+}
+
+.IconeUpload{
+  font-size: 4em;
+  margin-left: 40vh;
+  color:#CE9F73;
+}
+
+.BotaoArquivo{
+  margin-left: 35vh;
+  margin-bottom: 5vh;
+}
