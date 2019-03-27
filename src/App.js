@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-
+import logo from './logo.svg';
 import './styles/App.css';
 import './styles/NavigationFormStyle.css';
-import './styles/ActionsButtonsStyle.css';
 import './styles/InputTextStyle.css';
+import './styles/ActionsButtonsStyle.css';
+import './styles/UploadFileStyleCss.css';
+import NavigationFormComponent from './components/NavigationFormComponent';
+import UploadFileComponent from './components/UploadFileComponent';
 
 const inputs = [
   {
@@ -41,15 +43,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="half">
-          <ul>
-            <li> <h2>Escolha uma requisição</h2> </li>
-            <li> <Link to="/sobre" className="HomeLinks">Atendimento a criança</Link> </li>
-            <li> <Link to="/sobre" className="HomeLinks">Materiais / Produtos</Link> </li>
-          </ul>
-        </div>
-        <div id="imagem" className="half">
-        </div>
+        <NavigationFormComponent inputs={inputs} />
+        <UploadFileComponent />
       </div>
     );
   }
