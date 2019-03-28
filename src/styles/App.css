@@ -120,6 +120,23 @@ button:hover,
   text-align: center;
 }
 
+
+.CarouselApproval {
+  min-height: 40vh;  
+  background-color: #fff;
+  color: black;
+}
+
+.dataTable {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gVZomo {
+  overflow: hidden;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

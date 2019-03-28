@@ -9,6 +9,7 @@ import SobreCrianca from './screens/SobreCrianca';
 import SobreMateriais from './screens/SobreMateriais';
 import FormularioCrianca from './screens/FormularioCrianca';
 import FormularioMateriais from './screens/FormularioMateriais';
+import ApprovalScreen from './screens/ApprovalScreen';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -18,6 +19,8 @@ ReactDOM.render(
             <Route path="/FormularioMateriais" component={FormularioMateriais} />
             <Route path="/SobreCrianca" component={SobreCrianca} />
             <Route path="/SobreMateriais" component={SobreMateriais} />
+            <Route path="/ApprovalScreen" component={ApprovalScreen} />
+
         </Switch>
     </ BrowserRouter>
     , document.getElementById('root'));
