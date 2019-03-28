@@ -22,8 +22,8 @@
   
   .underNavigation{
     position: absolute;
-    min-width: 200px;
-    min-height: 200px;
+  min-width: 200px;
+  min-height: 200px;
     background-color: '#fff';
 		z-index: 2;
   }

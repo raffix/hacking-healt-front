@@ -14,9 +14,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.half {
-  display: inline-flex;
-  width: 50%;
-  float: left;
-}

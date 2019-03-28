@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InputTextComponent from './InputTextComponent';
 import ActionsButtonsComponent from './ActionsButtonsComponent';
 
-export default class NavigationFormComponent extends Component {
+export default class Home extends Component {
 
     state = {positionNavigation: 0}
 
@@ -19,11 +19,11 @@ export default class NavigationFormComponent extends Component {
         })               
       }
 
-    handlerPrevious() {            
+      handlerPrevious() {            
         this.setState({
             positionNavigation: this.refs['actionsButtons'].previous()
         })               
-    }
+      }
 
     render() {
         return (

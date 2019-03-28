@@ -1,7 +1,6 @@
 .App {
   text-align: left;
   background-color: #58120D;
-  color: #eEbF93;
   height: 100%;
 }
 
@@ -22,26 +21,8 @@
   color: white;
 }
 
-ul {
-  list-style: none;
-  padding: 0px; 
-}
-
-ul li {
-  display: inline-block;
-  width: 100%;
-  float: left;
-}
-
-.HomeLinks,
-button {
-  background-color: #CE9F73;
-  color: #400A07;
-  padding: 1vh;
-  border-radius: 4px;
-  text-decoration: none;
-  margin: 5px;
-  display: inline-block;
+.App-link {
+  color: #61dafb;
 }
 
 @keyframes App-logo-spin {
