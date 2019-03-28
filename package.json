@@ -2,7 +2,6 @@
   "name": "hacking-healt-front",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://crs.unochapeco.edu.br/shriners",
   "dependencies": {
     "3d-react-carousal": "^2.0.1",
     "react": "^16.8.6",
