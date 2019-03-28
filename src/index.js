@@ -10,6 +10,7 @@ import SobreMateriais from './screens/SobreMateriais';
 import FormularioCrianca from './screens/FormularioCrianca';
 import FormularioMateriais from './screens/FormularioMateriais';
 import ApprovalScreen from './screens/ApprovalScreen';
+import FormularioProfissional from './screens/FormularioProfissional';
 
 ReactDOM.render(
     <BrowserRouter>
@@ -19,7 +20,9 @@ ReactDOM.render(
             <Route path="/FormularioMateriais" component={FormularioMateriais} />
             <Route path="/SobreCrianca" component={SobreCrianca} />
             <Route path="/SobreMateriais" component={SobreMateriais} />
+            <Route path="/SobreMateriais" component={SobreMateriais} />
             <Route path="/ApprovalScreen" component={ApprovalScreen} />
+            <Route path="/FormularioProfissional" component={FormularioProfissional} />
 
         </Switch>
     </ BrowserRouter>

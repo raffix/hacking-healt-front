@@ -19,7 +19,8 @@ class App extends Component {
             <li><span id="LogoAmal" style={{ backgroundImage: `url(${LogoAmal})` } }></span></li>
             <li> <h2>Escolha uma requisição</h2> </li>
             <li> <Link to="/SobreCrianca" className="HomeButton">Atendimento a criança</Link> </li>
-            <li> <Link to="/SobreMateriais" className="HomeButton">Materiais / Produtos</Link> </li>
+            <li> <Link to="/FormularioMateriais" className="HomeButton">Materiais / Produtos</Link> </li>
+            <li> <Link to="/FormularioProfissional" className="HomeButton">Profissionais</Link> </li>
             <li> <Link to="/ApprovalScreen" className="HomeButton">Aprovação</Link> </li>
 
           </ul>

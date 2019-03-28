@@ -16,20 +16,20 @@ const inputs = [
     "type": "text"
   }, 
   {
-    "id": "material",
-    "title": "Material",
-    "subtitle": "Escolha um material",    
+    "id": "especialidade",
+    "title": "Especialidade",
+    "subtitle": "Selcione a especialidade desejada",    
     "type": "select",
     "options": [
-      {"value": 1, "description": "MATERIAL 1"},
-      {"value": 2, "description": "MATERIAL 2"},
-      {"value": 3, "description": "MATERIAL 3"},          
-      {"value": 4, "description": "MATERIAL 4"},
+      {"value": 1, "description": "ESPECIALIDADE 1"},
+      {"value": 2, "description": "ESPECIALIDADE 2"},
+      {"value": 3, "description": "ESPECIALIDADE 3"},          
+      {"value": 4, "description": "ESPECIALIDADE 4"},
     ],
-  }, {
+  },  {
     "id": "quantidade",
     "title": "Quantidade",
-    "subtitle": "Informe a quantidade",    
+    "subtitle": "Quantidade de profissionais",    
     "placeholder": "Digite aqui",
     "type": "text"
   }, {
@@ -47,7 +47,7 @@ const inputs = [
   }
 ];
 
-class FormularioMateriais extends Component {
+class FormularioProfissional extends Component {
   render() {
     return (
       <div className="App">
@@ -57,4 +57,4 @@ class FormularioMateriais extends Component {
   }
 }
 
-export default FormularioMateriais;
+export default FormularioProfissional;
