@@ -8,8 +8,7 @@
     padding-right: 1vh;  
   }
   
-  .InputText input, .InputText input:focus{
-    width: 100%;
+  .InputText input, .InputText input:focus{    
     height: 30px;
     font-weight: bold;
     background-color: #400A07;
@@ -17,6 +16,14 @@
     border-radius: 5px;
     padding-left: 10px;
     outline: none;
+  }
+
+  .InputText input[type=text], .InputText select {
+    width: 100%;
+  }
+
+  .InputText select {
+    height: 5vh;
   }
   
   .InputText .LabelInputText span {
