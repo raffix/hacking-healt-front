@@ -1,23 +1,24 @@
 .NavigationFormFocus {
     background-color: #400A07;
-    min-height: 30vh;
   }
   
-  .NavigationFormPrevious {
+  .NavigationFormPrevious,
+  .NavigationFormNext{
+    position: relative;
     min-height: 32vh;
-    width: 90vh;
-    margin-left: 40vh;
+    width: 70%;
   }
-  
-  .NavigationFormNext {
-    min-height: 32vh;
-    width: 90vh;
-    margin-left: 40vh;
-  }
-  
-  .NavigationInputContainer {
-    width: 90vh;
-    margin-left: 40vh;
+
+  .NavigationFormPrevious::before,
+  .NavigationFormNext::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba( 104, 3, 9, 0.75);
   }
   
   .underNavigation{
@@ -26,4 +27,19 @@
     min-height: 200px;
     background-color: '#fff';
 		z-index: 2;
+  }
+
+  .NavigationForm > div {
+    padding: 20px 15%;
+  }
+
+  .NavigationForm > div > div {
+    display: inline-block;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .NavigationForm > div h3 {
+    padding-top: 0px !important;
+    margin-top: 0px;
   }

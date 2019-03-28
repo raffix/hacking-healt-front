@@ -10,10 +10,12 @@ class Sobre extends Component {
         <header className="App-header">
           <h1 className="App-title">Página de Sobre</h1>
         </header>
-        <p className="App-intro">
-          <span> <Link to="/FormularioCrianca" className="ActionsButtonsPrimary">Sim</Link> </span>
-          <span> <Link to="/" className="ActionsButtonsPrimary">Não</Link> </span>
-        </p>
+        <div className="SobreBody">
+          <p className="App-intro">
+            <span> <Link to="/FormularioCrianca" className="ActionsButtonsPrimary">Sim</Link> </span>
+            <span> <Link to="/" className="ActionsButtonsPrimary">Não</Link> </span>
+          </p>
+        </div>
       </div>
     );
   }
