@@ -8,7 +8,7 @@ export default class InputSelectComponent extends Component {
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
-                    <select name={this.props.element.id}>
+                    <select className="select-container" name={this.props.element.id}>
                     {this.props.element.options.map(op => {
                        return <option value={op.value} > {op.description} </option>
                     })}
