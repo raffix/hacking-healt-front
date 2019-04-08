@@ -4,7 +4,9 @@ import './../styles/App.css';
 import './../styles/NavigationFormStyle.css';
 import './../styles/InputTextStyle.css';
 import './../styles/ActionsButtonsStyle.css';
+import './../styles/Formulario.css';
 import NavigationFormComponent from './../components/NavigationFormComponent';
+import FormTitleComponent from './../components/FormTitleComponent';
 
 const inputs = [
   {
@@ -956,6 +958,7 @@ class FormularioCrianca extends Component {
   render() {
     return (
       <div className="App">
+        <FormTitleComponent title={'Formulário Criança'} />
         <NavigationFormComponent inputs={inputs} />
       </div>
     );
