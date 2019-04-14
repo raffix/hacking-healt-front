@@ -3,6 +3,7 @@ import InputTextComponent from './InputTextComponent';
 import InputRadioComponent from './InputRadioComponent';
 import InputCheckboxComponent from './InputCheckboxComponent';
 import InputSelectComponent from './InputSelectComponent';
+import InputPasswordComponent from './InputPasswordComponent';
 import ActionsButtonsComponent from './ActionsButtonsComponent';
 
 export default class NavigationFormComponent extends Component {
@@ -84,6 +85,11 @@ export default class NavigationFormComponent extends Component {
                         {
                             this.props.inputs[this.state.positionNavigation].type == 'select' ? 
                                 <InputSelectComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                        }
+
+                        {
+                            this.props.inputs[this.state.positionNavigation].type == 'password' ? 
+                                <InputPasswordComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         
