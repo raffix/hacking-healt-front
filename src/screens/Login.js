@@ -8,6 +8,10 @@ import './../styles/Formulario.css';
 import FormTitleComponent from './../components/FormTitleComponent';
 
 class Login extends Component {
+  sendLogin() {
+    document.getElementById('linkInicial').click();
+  }
+
   render() {
     return (
       <div className="App">
@@ -28,6 +32,7 @@ class Login extends Component {
           <button className="ActionsButtonsPrimary" onClick="sendLogin">Entrar</button>                
           <a className="ActionsButtonsLink" onClick="recoveryPassword">Recuperar senha</a>
         </div>
+        <Link id="linkInicial" to="/Inicial"></Link>
       </div>
     );
   }

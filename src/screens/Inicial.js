@@ -1,14 +1,13 @@
 
 import React, { Component } from 'react';
-import LogoAmal from './images/logo.png';
-import ImagemCrianca from './images/Crianca.png';
+import LogoAmal from './../images/logo.png';
+import ImagemCrianca from './../images/Crianca.png';
 import { Link } from 'react-router-dom';
 
-import './styles/App.css';
-import './styles/NavigationFormStyle.css';
-import './styles/ActionsButtonsStyle.css';
-import './styles/InputTextStyle.css';
-import Login from './screens/Login';
+import './../styles/App.css';
+import './../styles/NavigationFormStyle.css';
+import './../styles/ActionsButtonsStyle.css';
+import './../styles/InputTextStyle.css';
 
 class Inicial extends Component {
 
