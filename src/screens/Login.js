@@ -5,33 +5,29 @@ import './../styles/NavigationFormStyle.css';
 import './../styles/InputTextStyle.css';
 import './../styles/ActionsButtonsStyle.css';
 import './../styles/Formulario.css';
-import NavigationFormComponent from './../components/NavigationFormComponent';
 import FormTitleComponent from './../components/FormTitleComponent';
-
-const inputs = [
-  {
-    "id": "login",
-    "title": "Login",
-    "subtitle": "",
-    "hint": "",
-    "placeholder": "",
-    "type": "text"
-  }, 
-  {
-    "id": "senha",
-    "title": "Senha",
-    "subtitle": "Informe a sua senha",
-    "placeholder": "",
-    "type": "password"
-  }
-];
 
 class Login extends Component {
   render() {
     return (
       <div className="App">
         <FormTitleComponent title={'Login'} />
-        <NavigationFormComponent inputs={inputs} />
+        <div className="InputText">
+          <label className="LabelInputText">
+            <span>Usuário</span>
+            <input type="text" name="login" id="login" placeholder="Usuário" />
+          </label>                
+        </div>
+        <div className="InputText">
+          <label className="LabelInputText">
+            <span>Senha</span>
+            <input type="password" name="senha" id="senha" placeholder="Senha" />
+          </label>                
+        </div>
+        <div>
+          <button className="ActionsButtonsPrimary" onClick="sendLogin">Entrar</button>                
+          <a className="ActionsButtonsLink" onClick="recoveryPassword">Recuperar senha</a>
+        </div>
       </div>
     );
   }
