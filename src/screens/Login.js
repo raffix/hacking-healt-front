@@ -6,7 +6,6 @@ import './../styles/InputTextStyle.css';
 import './../styles/ActionsButtonsStyle.css';
 import './../styles/Formulario.css';
 import './../styles/LoginStyle.css';
-import FormTitleComponent from './../components/FormTitleComponent';
 
 class Login extends Component {
   sendLogin() {
@@ -20,7 +19,6 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="App">
         <div className="ContainerLogin">
           <div className="InputText">
             <label className="LabelInputText">
@@ -40,7 +38,6 @@ class Login extends Component {
           </div>
           <Link id="linkInicial" to="/Inicial"></Link>
         </div>
-      </div>
     );
   }
 }

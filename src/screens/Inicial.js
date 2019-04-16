@@ -1,19 +1,20 @@
-
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import LogoAmal from './../images/logo.png';
 import ImagemCrianca from './../images/Crianca.png';
-import { Link } from 'react-router-dom';
 
 import './../styles/App.css';
 import './../styles/NavigationFormStyle.css';
-import './../styles/ActionsButtonsStyle.css';
 import './../styles/InputTextStyle.css';
+import './../styles/ActionsButtonsStyle.css';
+import './../styles/Formulario.css';
 
 class Inicial extends Component {
 
   render() {
     return (
-    <div>
+    <div className="App">
         <div className="half">
           <ul className="MenuCentral">
             <li><span id="LogoAmal" style={{ backgroundImage: `url(${LogoAmal})` } }></span></li>
