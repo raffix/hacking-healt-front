@@ -18,7 +18,9 @@
     outline: none;
   }
 
-  .InputText input[type=text], .InputText select {
+  .InputText input[type=text],
+  .InputText input[type=password], 
+  .InputText select {
     width: 100%;
   }
 

@@ -1,0 +1,7 @@
+.ContainerLogin {
+    display: inline-block;
+    margin: 7em 25%;
+    width: 50%;
+    max-width: 280px;
+    text-align: left;
+}
