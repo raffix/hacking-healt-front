@@ -23,7 +23,8 @@ export const DropContainer = styled.div.attrs({
 `;
 
 const messageColors = {
-  default: "#999",
+  default: "#CD9A7B",
+  upload: "#CE9F73",
   error: "#e57878",
   success: "#CE9F73"
 };
@@ -34,7 +35,7 @@ const Icone = styled.a`
 
 export const UploadMessage = styled.p`
   display: flex;
-  color: ${props => messageColors[props.type || "default"]};
+  color: ${props => messageColors[props.type || "upload"]};
   justify-content: center;
   align-items: center;
   padding: 15px 0;
@@ -52,9 +53,10 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 400px;
-  background: #58120D;
+  // max-width: 400px;
+  // background: #58120D;
   border-radius: 4px;
+  margin-top: 25vh;
 `;
 
 

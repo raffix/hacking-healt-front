@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class InputTextComponent extends Component {
+export default class InputSelectComponent extends Component {
     render() {
         return (
             <div className="InputText">
@@ -8,8 +8,13 @@ export default class InputTextComponent extends Component {
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
-                    <input type="text" disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} placeholder={this.props.element.placeholder} />
-                </label>                
+                    <select name={this.props.element.id}>
+                    {this.props.element.options.map(op => {
+                       return <option value={op.value} > {op.description} </option>
+                    })}
+                    </select>
+                </label>            
+                
             </div>
         );
     }

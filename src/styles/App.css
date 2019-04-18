@@ -1,7 +1,30 @@
+html,
+body,
+#root {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+
+  padding: 0px;
+  margin: 0px;
+
+  overflow: hidden;
+  margin-bottom: 0px;
+
+  font-size: 1em;
+  line-height: 1.2em;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .App {
   text-align: left;
-  background-color: #58120D;
+  background-color: #680309;
+  color: #eEbF93;
   height: 100%;
+}
+
+.creme {
+  color: #eEbF93;
 }
 
 .App-logo {
@@ -11,8 +34,7 @@
 }
 
 .App-header {
-  background-color: #58120D;
-  min-height: 100vh;
+  background-color: #680309;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -21,9 +43,99 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.BackgroundVermelhoEscuro {
+  background-color: #3e0003;
 }
+
+#LogoAmal {
+  display: inline-block;
+  height: 164px;
+  width: 165px;
+  margin-left: -155px;
+}
+
+ul {
+  list-style: none;
+  padding: 0px; 
+  margin: 0px;
+}
+
+ul li {
+  display: inline-block;
+  width: 100%;
+  float: left;
+}
+
+.MenuCentral {
+  display: inline-table; 
+}
+
+.MenuCentral li {
+  text-align: center;
+}
+
+.half {
+  display: flex;
+  width: 50%;
+  height: 100%;
+  float: left;
+  justify-content: center;
+  align-items: center;
+}
+
+#imagem {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.HomeButton,
+button,
+.btn {
+  background-color: #CE9F73;
+  color: #400A07;
+  padding: 1vh;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 5px;
+  display: inline-block;
+}
+
+.btn {
+  display: inline-block;
+  height: 25px !important;
+  line-height: 30px;
+  text-align: center;
+  padding: 5px 5%;
+}
+
+.HomeButton:hover,
+button:hover,
+.btn:hover {
+  background: #fbdcca;
+}
+
+.HomeButton {
+  width: 300px;
+  text-align: center;
+}
+
+
+.CarouselApproval {
+  min-height: 40vh;  
+  background-color: #fff;
+  color: black;
+}
+
+.dataTable {
+  width: 100%;
+  overflow: hidden;
+}
+
+.gVZomo {
+  overflow: hidden;
+}
+
 
 @keyframes App-logo-spin {
   from {

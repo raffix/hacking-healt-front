@@ -2,9 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.ul`
   
-  background: #400A07;
-  width: 88.5vh;
-  padding: 1vh;
+  width: 90vh;
   margin-top: 0.3vh;
   border-radius: 5px;
 
@@ -13,10 +11,6 @@ export const Container = styled.ul`
     justify-content: space-between;
     align-items: center;
     color: #444;
-
-    & + li {
-      margin-top: 15px;
-    }
   }
 `;
 

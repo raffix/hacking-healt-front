@@ -50,7 +50,9 @@ export default class ActionsButtonsComponent extends Component {
     render() {
         return (
             <div>
-                <button className="ActionsButtonsPrimary" disabled={this.state.disableNext} onClick={this.props.handlerNext}>Avançar</button>
+                <button className="ActionsButtonsPrimary" disabled={this.state.disableNext} onClick={this.props.handlerNext}>
+                {this.props.inputs.length - 1 == this.state.positionNavigation ? "Salvar" : "Avançar"}
+                </button>                
                 <a className="ActionsButtonsLink" disabled={this.state.disablePrevious} onClick={this.props.handlerPrevious}>Voltar pergunta <IoMdReturnLeft /></a>
             </div>
         );

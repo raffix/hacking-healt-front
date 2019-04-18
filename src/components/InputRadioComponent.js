@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class InputTextComponent extends Component {
+export default class InputRadioComponent extends Component {
     render() {
         return (
             <div className="InputText">
@@ -8,8 +8,11 @@ export default class InputTextComponent extends Component {
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
-                    <input type="text" disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} placeholder={this.props.element.placeholder} />
-                </label>                
+                    {this.props.element.options.map(op => {
+                       return <div><input type="radio" name={this.props.element.id} value={op.value} /> {op.description}</div>
+                    })}
+                </label>            
+                
             </div>
         );
     }

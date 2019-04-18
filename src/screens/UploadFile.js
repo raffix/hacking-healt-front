@@ -1,22 +1,26 @@
-import React, { Component } from "react";
-
-import Dropzone from "react-dropzone";
-
-import { DropContainer, UploadMessage } from "./../styles/UploadFileStyle";
-import { FiUpload } from "react-icons/fi";
+import React, { Component } from 'react'; 
+import './../styles/App.css';
+import './../styles/NavigationFormStyle.css';
+import './../styles/InputTextStyle.css';
+import './../styles/ActionsButtonsStyle.css';
+import './../styles/UploadFileStyleCss.css';
+import UploadFileComponent from './../components/UploadFileComponent';
+import FileListComponent from './../components/FileListComponent';
 
 import { uniqueId } from "lodash";
 import filesize from "filesize";
 
 import api from "./../services/api";
 
-export default class Upload extends Component {
+import { Container, Content } from "./../styles/UploadFileStyle";
 
-	state = {
-    	uploadedFiles: []
-  	};
+class App extends Component {
 
-  	async componentDidMount() {
+  state = {
+    uploadedFiles: []
+  };
+
+  async componentDidMount() {
     const response = await api.get("posts");
 
     this.setState({
@@ -102,43 +106,22 @@ export default class Upload extends Component {
     this.state.uploadedFiles.forEach(file => URL.revokeObjectURL(file.preview));
   }
 
-  renderDragMessage = (isDragActive, isDragReject) => {
-    if (!isDragActive) {
-      return <UploadMessage>Arraste e solte o arquivo aqui ou</UploadMessage>;
-    }
-
-    if (isDragReject) {
-      return <UploadMessage type="error">Arquivo não suportado</UploadMessage>;
-    }
-
-    return <UploadMessage type="success">Solte o arquivo aqui</UploadMessage>;
-  };
-
   render() {
-    const { onUpload } = this.props;
+    const { uploadedFiles } = this.state;
     return (
-      <div className="CarregaArquivoComponente">
-        <h1>Upgrade de arquivos</h1>
-        <h2>Campo para subir arquivos</h2>
-        <div className="CarregaArquivo">
-          <a className="IconeUpload"> <FiUpload /></a>
-          <Dropzone onDropAccepted={onUpload}>
-            {({ getRootProps, getInputProps, isDragActive, isDragReject }) => (
-              <DropContainer
-                {...getRootProps()}
-                isDragActive={isDragActive}
-                isDragReject={isDragReject}
-              >
-                <input {...getInputProps()} />
-                {this.renderDragMessage(isDragActive, isDragReject)}
-                <h3>Procure no Computador</h3>
-              </DropContainer>
-            )}
-            
-          </Dropzone>
-         </div>
-         {/* <h2 className="ArquivoAnexados">Arquivos Anexados</h2> */}
-       </div>
-     );
+      <div className="UploadArea">
+        <Container>
+        <Content>
+          <UploadFileComponent onUpload={this.handleUpload} />
+          {!!uploadedFiles.length && (
+            <FileListComponent files={uploadedFiles} onDelete={this.handleDelete} />
+          )}
+        </Content>
+      </Container>
+
+      </div>
+    );
   }
 }
+
+export default App;
