@@ -60,7 +60,7 @@ export default class NavigationFormComponent extends Component {
                             <InputSelectComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} /> 
                             :
                             <div></div>
-                    }
+                    }   
                 </div>
 
                 <div className="NavigationFormFocus">
@@ -85,8 +85,11 @@ export default class NavigationFormComponent extends Component {
                             this.props.inputs[this.state.positionNavigation].type == 'select' ? 
                                 <InputSelectComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
-                        
-                        
+                        {
+                            this.props.inputs[this.state.positionNavigation].type == 'password' ? 
+                                <InputPasswordComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                        }
+
                         <ActionsButtonsComponent ref={'actionsButtons'} handlerNext={this.handlerNext} handlerPrevious={this.handlerPrevious} inputs={this.props.inputs} />
                     </div>
                 </div>

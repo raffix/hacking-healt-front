@@ -5,6 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import App from './App';
+import Inicial from './screens/Inicial';
 import SobreCrianca from './screens/SobreCrianca';
 import SobreMateriais from './screens/SobreMateriais';
 import FormularioCrianca from './screens/FormularioCrianca';
@@ -12,11 +13,13 @@ import FormularioMateriais from './screens/FormularioMateriais';
 import ApprovalScreen from './screens/ApprovalScreen';
 import FormularioProfissional from './screens/FormularioProfissional';
 import UploadFile from './screens/UploadFile';
+import MinhasSolicitacoes from './screens/MinhasSolicitacoes';
 
 ReactDOM.render(
     <BrowserRouter>
         <Switch>
             <Route path="/" exact={true} component={App} />
+            <Route path="/Inicial" component={Inicial} />
             <Route path="/FormularioCrianca" component={FormularioCrianca} />
             <Route path="/FormularioMateriais" component={FormularioMateriais} />
             <Route path="/SobreCrianca" component={SobreCrianca} />
@@ -25,8 +28,7 @@ ReactDOM.render(
             <Route path="/ApprovalScreen" component={ApprovalScreen} />
             <Route path="/FormularioProfissional" component={FormularioProfissional} />
             <Route path="/UploadFile" component={UploadFile} />
-            
-
+            <Route path="/MinhasSolicitacoes" component={MinhasSolicitacoes} />
         </Switch>
     </ BrowserRouter>
     , document.getElementById('root'));

@@ -9,7 +9,7 @@ export default class InputCheckboxComponent extends Component {
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
                     {this.props.element.options.map(op => {
-                       return <div><input type="checkbox" name={this.props.element.id} value={op.value} /> {op.description}</div>
+                       return <div className="checkbox-container"><input type="checkbox" name={this.props.element.id} value={op.value} /> {op.description}</div>
                     })}
                 </label>            
                 
