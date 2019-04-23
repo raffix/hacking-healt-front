@@ -1,0 +1,10 @@
+.ContainerSolicitacoes {
+    display: inline-block;
+    margin: 1em 5%;
+    width: 90%;
+    text-align: left;
+}
+
+.ContainerSolicitacoes > .dataTable > div {
+    overflow-x: hidden;
+}
