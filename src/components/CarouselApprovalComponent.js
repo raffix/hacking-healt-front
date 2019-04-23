@@ -40,28 +40,51 @@ const custonTheme = {
       backgroundColor: '#363640',
     },
   };
-  
 
 const data = [
-    { id: 1, solicitation: "Morbi id magna eleifend dolor ultrices scelerisque.Curabitur a justo neque." },
-    { id: 2, solicitation: 'Nullam porta, purus id accumsan aliquam, urna lacus pulvinar nibh, non hendrerit augue nulla eu felis. ' },
-    { id: 3, solicitation: 'Pellentesque porttitor justo massa, eu vestibulum nisi egestas ut. Donec dapibus massa sem, ac tincidunt eros semper ut.' },
-];
-const columns = [
-    {
-        name: 'Id',
-        selector: 'id',
-        sortable: true,
-        width: '50px'
+    { 
+      id: 1, 
+      solicitation: "Morbi id magna eleifend dolor ultrices scelerisque.Curabitur a justo neque.",
+      type: 'Material',
+      date: '01/03/2019'
     },
+    { 
+      id: 2, 
+      solicitation: 'Nullam porta, purus id accumsan aliquam, urna lacus pulvinar nibh, non hendrerit augue nulla eu felis. ',
+      type: 'Criança',
+      date: '01/04/2019'
+    },
+    { 
+      id: 3, 
+      solicitation: 'Pellentesque porttitor justo massa, eu vestibulum nisi egestas ut. Donec dapibus massa sem, ac tincidunt eros semper ut.',
+      type: 'Profissional',
+      date: '30/03/2019'
+    },
+];
+
+const columns = [
+  {
+      name: 'Id',
+      selector: 'id',
+      sortable: true,
+      width: '50px'
+  },
   {
     name: 'Solicitação',
     selector: 'solicitation',
     sortable: true,
   },
-  
+  {
+    name: 'Tipo',
+    selector: 'type',
+    sortable: true,
+  },
+  {
+    name: 'Data',
+    selector: 'date',
+    sortable: true,
+  },
 ];
-
 
 const slides = [
     <ApprovalHistComponent 
