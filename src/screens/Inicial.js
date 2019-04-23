@@ -23,7 +23,7 @@ class Inicial extends Component {
             <li> <Link to="/FormularioMateriais" className="HomeButton">Materiais / Produtos</Link> </li>
             <li> <Link to="/FormularioProfissional" className="HomeButton">Profissionais</Link> </li>
             <li> <Link to="/ApprovalScreen" className="HomeButton">Aprovação</Link> </li>
-
+            <li> <Link to="/MinhasSolicitacoes" className="HomeButton">Solicitações</Link> </li>
           </ul>
         </div>
         <div id="imagem" className="half" style={{ backgroundImage: `url(${ImagemCrianca})` } }>
