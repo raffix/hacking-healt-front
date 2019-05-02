@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, BrowserRouter } from 'react-router-dom';
 import './../styles/App.css';
 import './../styles/NavigationFormStyle.css';
 import './../styles/InputTextStyle.css';
@@ -8,14 +8,55 @@ import './../styles/Formulario.css';
 import './../styles/LoginStyle.css';
 
 class Login extends Component {
+  
+
+  constructor(props) {
+    super(props);
+    let token = window.localStorage.getItem('token');
+    this.redirect = false;
+    console.log(token)
+    if(token !== null && token !== '')
+      BrowserRouter.push('/Inicial')
+  }
+
   sendLogin() {
-    console.log('sendlogin');
-    document.getElementById('linkInicial').click();
+    let header = {
+      'Content-Type': 'application/json'
+    }
+
+    let options = {
+      method: 'POST',
+      body: JSON.stringify({
+        login: document.getElementById('login').value,
+        senha: document.getElementById('senha').value
+      }),
+      headers: header
+    };
+    
+
+    fetch("http://localhost:3000/login", options)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          console.log(result)
+          if(result.error === undefined) {
+            window.localStorage.setItem('token', result.token)
+            this.redirect = true;
+            document.getElementById('linkInicial').click();
+          }
+          alert(result.error);
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
   }
 
   recoveryPassword() {
-    console.log('recovery password');
+    console.log('Funcionalidade ainda não implementada');
   }
+
+
 
   render() {
     return (
@@ -36,6 +77,7 @@ class Login extends Component {
             <button className="ActionsButtonsPrimary" onClick={this.sendLogin}>Entrar</button>
             <a className="ActionsButtonsLink" onClick={this.recoveryPassword}>Recuperar senha</a>
           </div>
+
           <Link id="linkInicial" to="/Inicial"></Link>
         </div>
     );
