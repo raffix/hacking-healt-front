@@ -16,7 +16,7 @@ class Login extends Component {
     this.redirect = false;
     console.log(token)
     if(token !== null && token !== '')
-      BrowserRouter.push('/Inicial')
+      window.location = '/Inicial';
   }
 
   sendLogin() {

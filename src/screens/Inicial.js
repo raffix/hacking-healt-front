@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
 import LogoAmal from './../images/logo.png';
 import ImagemCrianca from './../images/Crianca.png';
 
@@ -10,7 +9,9 @@ import './../styles/InputTextStyle.css';
 import './../styles/ActionsButtonsStyle.css';
 import './../styles/Formulario.css';
 
-class Inicial extends Component {
+import LoginValidate from './../components/LoginValidate';
+
+class Inicial extends LoginValidate {
 
   render() {
     return (
