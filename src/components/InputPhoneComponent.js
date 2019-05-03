@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import InputMask from 'react-input-mask';
 
-export default class InputSelectComponent extends Component {
+export default class InputPhoneComponent extends Component {
     render() {
         return (
             <div className="InputText">
@@ -8,13 +9,8 @@ export default class InputSelectComponent extends Component {
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
-                    <select className="select-container" name={this.props.element.id}>
-                    {this.props.element.options.map(op => {
-                       return <option value={op.value} > {op.description} </option>
-                    })}
-                    </select>
-                </label>            
-                
+                    <InputMask type="text" mask="+55 \(99\) 99999-9999" value={this.props.value} onChange={this.props.valida}></InputMask>
+                </label>                
             </div>
         );
     }

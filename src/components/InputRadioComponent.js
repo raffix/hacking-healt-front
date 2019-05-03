@@ -9,7 +9,7 @@ export default class InputRadioComponent extends Component {
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
                     {this.props.element.options.map(op => {
-                       return <div><input type="radio" name={this.props.element.id} value={op.value} /> {op.description}</div>
+                       return <div className="radio-container"><input type="radio" name={this.props.element.id} value={op.value} id={this.props.element.id + op.value}/><label>{op.description}</label></div>
                     })}
                 </label>            
                 
