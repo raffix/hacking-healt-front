@@ -10,6 +10,8 @@ import './styles/ActionsButtonsStyle.css';
 import './styles/InputTextStyle.css';
 import Login from './screens/Login';
 
+import Login from './screens/Login';
+
 class App extends Component {
 
   render() {
