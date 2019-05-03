@@ -23,11 +23,12 @@ const inputs = [
      "type": "radio",
      "options": [
        {"value": 1, "description": "São Paulo Capital"},
-       {"value": 2, "description": "Baixada Santista"},
-       {"value": 3, "description": "Rio de Janeiro"},
-       {"value": 4, "description": "Santa Catarina"},
-       {"value": 5, "description": "Paraná"},
-       {"value": 6, "description": "Outra"}
+       {"value": 2, "description": "São Paulo Interior"},
+       {"value": 3, "description": "Baixada Santista"},
+       {"value": 4, "description": "Rio de Janeiro"},
+       {"value": 5, "description": "Santa Catarina"},
+       {"value": 6, "description": "Paraná"},
+       {"value": 7, "description": "Outra"}
      ],
    }, {
      "id": "outra_regiao",
@@ -51,12 +52,12 @@ const inputs = [
      "subtitle": "Informe a data de nascimento",
      "hint": "",
      "placeholder": "Digite aqui",
-     "type": "text"
+     "type": "data"
    },
    {
      "id": "numero_identidade",
        "title": "Número de identidade",
-       "subtitle": "Informe o número de identidade",
+       "subtitle": "Informe o número de identidade. Caso possua.",
        "hint": "",
        "placeholder": "Digite aqui",
        "type": "text"
@@ -64,15 +65,15 @@ const inputs = [
    {
      "id": "CPF",
        "title": "Número do CPF",
-       "subtitle": "Informe o número do CPF",
+       "subtitle": "Informe o número do CPF. Caso possua.",
        "hint": "",
        "placeholder": "Digite aqui",
-       "type": "text"
+       "type": "cpf"
    },
    {
      "id": "email",
        "title": "Email",
-       "subtitle": "Informe o email",
+       "subtitle": "Informe o email. Caso possua.",
        "hint": "",
        "placeholder": "Digite aqui",
        "type": "text"
@@ -80,7 +81,7 @@ const inputs = [
    {
      "id": "telefone",
        "title": "Número do telefone",
-       "subtitle": "Informe o número do telefone",
+       "subtitle": "Informe o número do telefone. Caso possua.",
        "hint": "",
        "placeholder": "Digite aqui",
        "type": "text"
@@ -137,7 +138,7 @@ const inputs = [
      {
          "id": "doenca_psiquiatrica",
          "title": "Doença psiquiátrica",
-         "subtitle": "Possui a doença psiquiátrica?",
+         "subtitle": "Possui alguma doença psiquiátrica?",
          "hint": "",         
          "type": "radio",
          "options": [
@@ -160,7 +161,7 @@ const inputs = [
          "subtitle": "Digite o CEP onde a criança reside",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cep",
  
      },
      {
@@ -217,7 +218,7 @@ const inputs = [
      {
          "id": "nome_mae",
          "title": "Nome Completo da Mãe",
-         "subtitle": "Informe qual o nome completo da mãe da criança",
+         "subtitle": "Informe o nome completo da mãe da criança",
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
@@ -225,7 +226,7 @@ const inputs = [
      {
          "id": "identidade_mae",
          "title": "Número de identidade da Mãe",
-         "subtitle": "Informe qual o número do documento de identidade da mãe da criança juntamente com o tipo, Orgão emissor e Data",
+         "subtitle": "Informe o número do documento de identidade da mãe da criança juntamente com o tipo, Orgão emissor e Data",
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
@@ -233,10 +234,10 @@ const inputs = [
      {
          "id": "CPF",
          "title": "Número de CPF da Mãe",
-         "subtitle": "Informe qual o número do documento de CPF da mãe da criança",
+         "subtitle": "Informe o número do documento de CPF da mãe da criança",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cpf",
      },
      {
          "id": "estado_civil_mae",
@@ -264,7 +265,7 @@ const inputs = [
          "subtitle": "Digite o CEP onde a mãe criança reside",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cep",
  
      },
      {
@@ -352,11 +353,11 @@ const inputs = [
      },
      {
          "id": "CPF",
-         "title": "Número de CPF da Mãe",
-         "subtitle": "Informe qual o número do documento de CPF da mãe da criança",
+         "title": "Número de CPF do Pai",
+         "subtitle": "Informe qual o número do documento de CPF do pai da criança",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cpf",
      },
      {
          "id": "estado_civil_pai",
@@ -385,7 +386,7 @@ const inputs = [
          "subtitle": "Digite o CEP onde o pai da criança reside",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cep",
  
      },
      {
@@ -491,7 +492,7 @@ const inputs = [
          "subtitle": "Informe qual o número do documento de CPF do responsável da criança",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cpf",
      },
      {
          "id": "estado_civil_responsavel",
@@ -519,7 +520,7 @@ const inputs = [
          "subtitle": "Digite o CEP onde o do responsável da criança reside",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cep",
  
      },
      {
@@ -599,16 +600,17 @@ const inputs = [
          "options": [
              {"value": 1, "description": "Até ½ salário mínimo"},
              {"value": 2, "description": "De ½ a 1 salário mínimo"},
-             {"value": 3, "description": "De 2 a 3 salários mínimos"},
-             {"value": 4, "description": "De 3 a 4 salários mínimos"},
-             {"value": 5, "description": "De 4 a 5 salários mínimos"},
-             {"value": 6, "description": "Mais de 5 salários mínimos"},
+             {"value": 3, "description": "De 1 a 2 salários mínimos"},
+             {"value": 4, "description": "De 2 a 3 salários mínimos"},
+             {"value": 5, "description": "De 3 a 4 salários mínimos"},
+             {"value": 6, "description": "De 4 a 5 salários mínimos"},
+             {"value": 7, "description": "Mais de 5 salários mínimos"},
          ],
      },
      {
          "id": "plano_saude_crianca",
          "title": "Plano de saúde da criança",
-         "subtitle": "Informa qual o plano de saúde a criança utiliza",
+         "subtitle": "Informe qual o plano de saúde a criança utiliza",
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "radio",
@@ -660,7 +662,7 @@ const inputs = [
      {
          "id": "diagnostico_criança",
          "title": "Descreva qual a doença ou diagnóstico da criança:",
-         "subtitle": "Descreva com suas palavras qual a doença ou diagnostico",
+         "subtitle": "Descreva com suas palavras qual a doença ou diagnóstico",
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
@@ -671,7 +673,7 @@ const inputs = [
          "subtitle": "Informe aproximadamente quando os sintomas tiveram inicio",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "data",
      },
      {
          "id": "descricao_primeiros_sintomas",
@@ -751,7 +753,7 @@ const inputs = [
          "subtitle": "Informe data da última Consulta",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "data",
      },
      {
          "id": "tipo_parto",
@@ -812,7 +814,7 @@ const inputs = [
      {
          "id": "nome_CRM_medico",
          "title": "Nome Completo do Médico e CRM",
-         "subtitle": "Informe o médico que esta a tatar da criança caso se aplique",
+         "subtitle": "Informe o médico que esta a tratar da criança caso se aplique",
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
@@ -820,7 +822,7 @@ const inputs = [
      {
          "id": "especialidade_medico",
          "title": "Especialidade",
-         "subtitle": "Informe a especialidade do médico caso saiba.",
+         "subtitle": "Informe a especialidade do médico caso saiba",
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
@@ -836,7 +838,7 @@ const inputs = [
      {
          "id": "local_trabalho_medico",
          "title": "Local onde trabalha",
-         "subtitle": "Informa o local onde trabalha caso saiba",
+         "subtitle": "Informe o local onde trabalha caso saiba",
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
@@ -852,10 +854,9 @@ const inputs = [
          "options": [
              {"value": 1, "description": "MÃE"},
              {"value": 2, "description": "PAI"},
-             {"value": 3, "description": "RESPONSÁVEL"},
-             {"value": 4, "description": "LEGAL INFORMADO ACIMA"},
+             {"value": 3, "description": "RESPONSÁVEL LEGAL INFORMADO ACIMA"},
              {"value": 4, "description": "SHRINER-AMAL"},
-             {"value": 4, "description": "OUTRO"},
+             {"value": 5, "description": "OUTRO"},
          ],
      },
      {
@@ -888,7 +889,7 @@ const inputs = [
          "subtitle": "",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "phone",
      },
      {
          "id": "email_shriner",
@@ -920,7 +921,7 @@ const inputs = [
          "subtitle": "Informe o número do CPF",
          "hint": "",
          "placeholder": "Digite aqui",
-         "type": "text",
+         "type": "cpf",
      },
      {
          "id": "info_templo",

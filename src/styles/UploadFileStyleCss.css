@@ -1,0 +1,62 @@
+.CarregaArquivoComponente h1{
+  font-weight:"bold";
+  /* margin-left: 40vh; */
+  color: white;
+  font-size: 1.17em;
+}
+
+.CarregaArquivoComponente h2{
+  color: #cda075;
+  font-size: 1em;
+  /* margin-left: 40vh; */
+}
+
+.CarregaArquivo{
+  width: 90vh;
+  /* margin-left: 40vh; */
+  border: 1px solid #fff;
+  /* align-items: center; */
+  border-radius:5px;
+  padding-top:5vh;
+  font-weight: bold;
+  margin-bottom: 3vh;
+}
+
+.CarregaArquivoComponente h3{
+  text-align: center;
+  margin-top: -3vh;
+  margin-left: 32vh;
+  margin-bottom: 5vh;
+  font-size: 15px;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  border-radius: 5px;
+  width: 25vh;
+  font-weight: bold;
+  background: #944d3b;
+  color: #58120D;
+}
+
+.IconeUpload{
+  font-size: 5em;
+  margin-left: 40vh;
+  color:#CE9F73;
+}
+
+.UploadArea{
+  background:#58120D;
+  height: 100%;
+  width: 100%;
+}
+
+.UploadArea ul li{
+  background:#611b16;
+  color: white;
+  font-size: 1em;
+  line-height: 1.2em;
+  font-family: 'Montserrat', sans-serif !important;
+}
+/* 
+.ArquivosUpload{
+  background: blue;
+}*/
