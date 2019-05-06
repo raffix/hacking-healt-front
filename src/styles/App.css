@@ -92,7 +92,7 @@ ul li {
 .HomeButton,
 button,
 .btn {
-  background-color: #CE9F73;
+  background-color: rgb(206, 193, 182);
   color: #400A07;
   padding: 1vh;
   border-radius: 4px;
@@ -136,6 +136,13 @@ button:hover,
   overflow: hidden;
 }
 
+.linkHome {
+  color: white;
+  margin-top: 20px;
+  margin-left: 80%; 
+  position:absolute ;
+  z-index:150;
+}
 
 @keyframes App-logo-spin {
   from {

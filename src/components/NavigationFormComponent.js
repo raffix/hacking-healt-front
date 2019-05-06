@@ -122,7 +122,7 @@ export default class NavigationFormComponent extends Component {
                                 <InputNumericalComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }   
 
-                        <ActionsButtonsComponent ref={'actionsButtons'} handlerNext={this.handlerNext} handlerPrevious={this.handlerPrevious} inputs={this.props.inputs} />
+                        <ActionsButtonsComponent ref={'actionsButtons'} handlerNext={this.handlerNext} handlerPrevious={this.handlerPrevious} submit={this.props.submit} inputs={this.props.inputs} />
                     </div>
                 </div>
 

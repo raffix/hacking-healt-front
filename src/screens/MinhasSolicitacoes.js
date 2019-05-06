@@ -8,6 +8,7 @@ import './../styles/ActionsButtonsStyle.css';
 import './../styles/Formulario.css';
 import './../styles/LoginStyle.css';
 import './../styles/MinhasSolicitacoesStyle.css';
+import {SolicitacoesSolicitanteService} from '../services/SolicitacoesSolicitanteService';
 
 const custonTheme = {
   title: {
@@ -82,8 +83,8 @@ const columns = [
       width: '50px'
   },
   {
-    name: 'Nome',
-    selector: 'nome',
+    name: 'Descrição',
+    selector: 'descricao',
     sortable: true,
   },
   {
@@ -103,16 +104,48 @@ const columns = [
   },
 ];
 
-class Login extends Component {
+class MinhasSolicitacoes extends Component {
+
+  state = {solicitacoes: []}
+
+  constructor (props) {
+    super(props);
+    this.getData();
+  }
+
+  async getData () {
+    let service = new SolicitacoesSolicitanteService();
+    service.getAll().then(res => res.json())
+    .then((result) => {      
+      console.log(result);
+      let solicitacoes = [];
+      result.map(d => {
+        solicitacoes.push({
+          'id': d.id,
+          'descricao': d.descricao,
+          'tipo': d.TipoSolicitacao.descricao_tipo,
+          'status': d.StatusAtualSolicitacaos[0].StatusSolicitacao.descricao,
+          'data': d.dt_solicitacao
+        })
+      })
+
+      this.setState({solicitacoes: solicitacoes})
+    }, (error) => {
+      alert("Erro! Contate o Administrador");
+      console.log(error)
+    })
+  }
+
   render() {
     return (
       <div className="App">
+        <Link className="linkHome" to="/Inicial">Home</Link>
         <div className="ContainerSolicitacoes">
           <div className="dataTable">
                     <DataTable
                     title="Solicitações"
                     columns={columns}
-                    data={solicitacoes}
+                    data={this.state.solicitacoes}
                     responsive={true}
                     allowOverflow={false}
                     customTheme={custonTheme}
@@ -128,4 +161,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default  MinhasSolicitacoes;

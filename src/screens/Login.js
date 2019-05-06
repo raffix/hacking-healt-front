@@ -6,6 +6,7 @@ import './../styles/InputTextStyle.css';
 import './../styles/ActionsButtonsStyle.css';
 import './../styles/Formulario.css';
 import './../styles/LoginStyle.css';
+import {AppSettings} from '../app.settings';
 
 class Login extends Component {
   
@@ -23,7 +24,7 @@ class Login extends Component {
     let header = {
       'Content-Type': 'application/json'
     }
-
+  
     let options = {
       method: 'POST',
       body: JSON.stringify({
@@ -34,19 +35,20 @@ class Login extends Component {
     };
     
 
-    fetch("http://localhost:3000/login", options)
+    fetch(AppSettings.BASE_URL + "/login", options)
       .then(res => res.json())
       .then(
         (result) => {
           console.log(result)
           if(result.error === undefined) {
-            window.localStorage.setItem('token', result.token)
-            this.redirect = true;
+            window.localStorage.setItem('token', result.token)            
             document.getElementById('linkInicial').click();
-          }
-          alert(result.error);
+          } else {
+            alert("Login ou senha inválidos");
+          }          
         },
         (error) => {
+          alert("Erro! Contate o Administrador");
           console.log(error)
         }
       )
