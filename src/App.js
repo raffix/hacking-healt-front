@@ -8,7 +8,6 @@ import './styles/App.css';
 import './styles/NavigationFormStyle.css';
 import './styles/ActionsButtonsStyle.css';
 import './styles/InputTextStyle.css';
-import Login from './screens/Login';
 
 import Login from './screens/Login';
 
