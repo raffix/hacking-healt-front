@@ -7,14 +7,14 @@ import './../styles/ActionsButtonsStyle.css';
 import './../styles/Formulario.css';
 import './../styles/LoginStyle.css';
 
+const urlAPi = 'http://18.231.117.212/';
+
 class Login extends Component {
   
 
   constructor(props) {
     super(props);
     let token = window.localStorage.getItem('token');
-    this.redirect = false;
-    console.log(token)
     if(token !== null && token !== '')
       window.location = '/Inicial';
   }
@@ -34,17 +34,15 @@ class Login extends Component {
     };
     
 
-    fetch("http://localhost:3000/login", options)
+    fetch(urlAPi + 'login', options)
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(result)
           if(result.error === undefined) {
             window.localStorage.setItem('token', result.token)
-            this.redirect = true;
             document.getElementById('linkInicial').click();
-          }
-          alert(result.error);
+          }else 
+            alert(result.error);
         },
         (error) => {
           console.log(error)
