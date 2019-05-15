@@ -4,13 +4,7 @@ import InputMask from 'react-input-mask';
 export default class InputDataComponent extends Component {
 
     storage = localStorage
-    state = {value: this.storage.getItem(this.props.element.id), flagValue: false}
-
-    constructor(props) {
-        super(props)
-        //this.props.value = this.state.value;
-
-    }
+    state = {value: this.storage.getItem(this.props.element.id) == null ? "" : this.storage.getItem(this.props.element.id), flagValue: false}
 
     persistField() {
         let value = document.getElementById(this.props.element.id).value

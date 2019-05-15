@@ -5,6 +5,12 @@ export default class InputSelectComponent extends Component {
     storage = localStorage
     state = {value: this.storage.getItem(this.props.element.id)}
 
+    constructor(props) {
+        super(props)
+        console.log(props)
+       
+    }
+
     persistField() {
         let value = document.getElementById(this.props.element.id).value
         this.setState({value: value})
@@ -28,5 +34,9 @@ export default class InputSelectComponent extends Component {
                 
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.persistField()
     }
 }

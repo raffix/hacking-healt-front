@@ -5,29 +5,29 @@ export default class ActionsButtonsComponent extends Component {
     
     storage = localStorage
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            positionNavigation: 0,
-            disableNext: false,
-            disablePrevious: true,
-        }
+    state = {
+        positionNavigation: 0,
+        disableNext: false,
+        disablePrevious: true,
     }
 
-    next() {    
-        let currentPosition = this.state.positionNavigation + 1;                    
+    next() {
+        
+        let value = document.getElementById(this.props.inputs[this.state.positionNavigation].id).value
+        this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, value)
+        
+        let currentPosition = this.state.positionNavigation + 1;         
         
         if (this.props.inputs[currentPosition - 1].type == "select") {
             let value = this.storage.getItem(this.props.inputs[currentPosition - 1].id )
 
             if (value != 1) {
-                currentPosition += 1; 
+                currentPosition = currentPosition + 1; 
             }
         }
         
         this.setState({"positionNavigation": currentPosition})     
         
-
         if (currentPosition > 0) {
             this.setState({"disablePrevious" : false})
         }                 
@@ -43,11 +43,11 @@ export default class ActionsButtonsComponent extends Component {
         
         let currentPosition = this.state.positionNavigation - 1;
 
-        if (this.props.inputs[currentPosition - 1].type == "select") {
+        if (currentPosition > 0 && this.props.inputs[currentPosition - 1].type == "select") {
             let value = this.storage.getItem(this.props.inputs[currentPosition - 1].id)
 
             if (value != 1) {
-                currentPosition -= 1; 
+                currentPosition = currentPosition - 1; 
             }
         }
 
@@ -69,7 +69,7 @@ export default class ActionsButtonsComponent extends Component {
     render() {
         return (
             <div>
-                {this.props.inputs.length - 1 == this.state.positionNavigation ? 
+                {this.props.inputs.length - 1 === this.state.positionNavigation ? 
                     <button className="ActionsButtonsPrimary"  onClick={() => {                                         
                         this.props.submit();
                     }}>

@@ -15,6 +15,8 @@ import LoginValidate from './../components/LoginValidate';
 class Inicial extends LoginValidate {
 
   state = {perfil: {id: null, descricao: null, menu: []}}
+  storage = localStorage
+
 
   constructor() {
     super();
@@ -25,31 +27,38 @@ class Inicial extends LoginValidate {
     let service = new UsuarioPerfilService();
     let result = await service.getPerfilUsuario().then(res => res.json())
     .then(
-      (result) => {       
-        let perfil = result.Perfils[0];      
-        this.setState({perfil: perfil})
-        let menu = [];        
-        console.log(perfil);
-        if (perfil.id == 2) {
-          menu.push(<li key="4"> <Link to="/SobreCrianca" className="HomeButton">Atendimento a criança</Link> </li>);
-          menu.push(<li key="5"> <Link to="/FormularioMateriais" className="HomeButton">Materiais / Produtos</Link> </li>);
-          menu.push(<li key="6"> <Link to="/FormularioProfissional" className="HomeButton">Profissionais</Link> </li>);
-          menu.push(<li key="7"> <Link to="/MinhasSolicitacoes" className="HomeButton">Solicitações</Link> </li>);
-        } else if (perfil.id > 2) {
-          menu.push(<li> <Link to="/ApprovalScreen" className="HomeButton">Aprovação</Link> </li>);
-        } else {
-          menu.push(<li key="8"> <Link to="/" className="HomeButton">Usuários</Link> </li>);
-          menu.push(<li key="9"> <Link to="/" className="HomeButton">Instituições</Link> </li>);
-          menu.push(<li key="10"> <Link to="/" className="HomeButton">Redes</Link> </li>);
-          menu.push(<li key="11"> <Link to="/" className="HomeButton">Especialidades profissionais</Link> </li>);
-          menu.push(<li key="12"> <Link to="/" className="HomeButton">Materiais</Link> </li>);
-          menu.push(<li key="13"> <Link to="/" className="HomeButton">Unidades Materiais</Link> </li>);        
+      (result) => {
+        if (result.hasOwnProperty('Perfils')) {       
+          let perfil = result.Perfils[0];      
+          this.setState({perfil: perfil})
+          let menu = [];        
+          
+        
+          if (perfil.id == 2) {
+            menu.push(<li key="4"> <Link to="/SobreCrianca" className="HomeButton">Atendimento a criança</Link> </li>);
+            menu.push(<li key="5"> <Link to="/FormularioMateriais" className="HomeButton">Materiais / Produtos</Link> </li>);
+            menu.push(<li key="6"> <Link to="/FormularioProfissional" className="HomeButton">Profissionais</Link> </li>);
+            menu.push(<li key="7"> <Link to="/MinhasSolicitacoes" className="HomeButton">Solicitações</Link> </li>);
+          } else if (perfil.id > 2) {
+            menu.push(<li> <Link to="/ApprovalScreen" className="HomeButton">Aprovação</Link> </li>);
+          } else {
+            menu.push(<li key="8"> <Link to="/" className="HomeButton">Usuários</Link> </li>);
+            menu.push(<li key="9"> <Link to="/" className="HomeButton">Instituições</Link> </li>);
+            menu.push(<li key="10"> <Link to="/" className="HomeButton">Redes</Link> </li>);
+            menu.push(<li key="11"> <Link to="/" className="HomeButton">Especialidades profissionais</Link> </li>);
+            menu.push(<li key="12"> <Link to="/" className="HomeButton">Materiais</Link> </li>);
+            menu.push(<li key="13"> <Link to="/" className="HomeButton">Unidades Materiais</Link> </li>);        
+          }
+
+          menu.push(<li key="14"> <Link to="#" onClick={this.logout} className="HomeButton">Sair</Link> </li>)
+          this.setState({menu: menu});
         }
-
-        menu.push(<li key="14"> <Link to="#" onClick={this.logout} className="HomeButton">Sair</Link> </li>)
-
-        console.log(menu)
-        this.setState({menu: menu});
+      
+        if (result.hasOwnProperty('auth') && result.auth === false) {
+          this.storage.removeItem('token')
+          window.location.href = '/'
+        }
+        
       },
       (error) => {
         console.log(error)

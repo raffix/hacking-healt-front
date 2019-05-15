@@ -25,7 +25,7 @@ export default class NavigationFormComponent extends Component {
     handlerNext() {         
         this.setState({
             positionNavigation: this.refs['actionsButtons'].next()
-        })               
+        })  
       }
 
       handlerPrevious() {            

@@ -128,9 +128,11 @@ button:hover,
 }
 
 .dataTable {
-  width: 100%;
+  
   overflow: hidden;
 }
+
+
 
 .gVZomo {
   overflow: hidden;
