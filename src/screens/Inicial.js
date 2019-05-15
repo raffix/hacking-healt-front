@@ -28,12 +28,13 @@ class Inicial extends LoginValidate {
     let result = await service.getPerfilUsuario().then(res => res.json())
     .then(
       (result) => {
-        if (result.hasOwnProperty('Perfils')) {       
-          let perfil = result.Perfils[0];      
+        if (result.hasOwnProperty('Perfils')) {
+          let perfil = result.Perfils[0];
           this.setState({perfil: perfil})
-          let menu = [];        
-          
-        
+          this.storage.setItem("perfil", perfil.id)
+
+          let menu = [];
+
           if (perfil.id == 2) {
             menu.push(<li key="4"> <Link to="/SobreCrianca" className="HomeButton">Atendimento a criança</Link> </li>);
             menu.push(<li key="5"> <Link to="/FormularioMateriais" className="HomeButton">Materiais / Produtos</Link> </li>);
@@ -47,18 +48,18 @@ class Inicial extends LoginValidate {
             menu.push(<li key="10"> <Link to="/" className="HomeButton">Redes</Link> </li>);
             menu.push(<li key="11"> <Link to="/" className="HomeButton">Especialidades profissionais</Link> </li>);
             menu.push(<li key="12"> <Link to="/" className="HomeButton">Materiais</Link> </li>);
-            menu.push(<li key="13"> <Link to="/" className="HomeButton">Unidades Materiais</Link> </li>);        
+            menu.push(<li key="13"> <Link to="/" className="HomeButton">Unidades Materiais</Link> </li>);
           }
 
           menu.push(<li key="14"> <Link to="#" onClick={this.logout} className="HomeButton">Sair</Link> </li>)
           this.setState({menu: menu});
         }
-      
+
         if (result.hasOwnProperty('auth') && result.auth === false) {
           this.storage.removeItem('token')
           window.location.href = '/'
         }
-        
+
       },
       (error) => {
         console.log(error)
@@ -68,17 +69,17 @@ class Inicial extends LoginValidate {
 
   logout() {
     window.localStorage.removeItem('token');
-    window.location = '/';             
+    window.location = '/';
   }
 
   render() {
     return (
-    <div className="App">        
+    <div className="App">
         <div className="half">
           <ul className="MenuCentral">
             <li key="1"><span id="LogoAmal" style={{ backgroundImage: `url(${LogoAmal})` } }></span></li>
-            <li key="2"> <h2>Escolha uma opção</h2> </li>        
-            <li key="3"><h5>Perfil: {this.state.perfil.descricao}</h5></li>  
+            <li key="2"> <h2>Escolha uma opção</h2> </li>
+            <li key="3"><h5>Perfil: {this.state.perfil.descricao}</h5></li>
             {this.state.menu}
           </ul>
         </div>

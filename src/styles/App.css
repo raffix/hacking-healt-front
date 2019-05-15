@@ -21,6 +21,8 @@ body,
   background-color: #680309;
   color: #eEbF93;
   height: 100%;
+  overflow-y: scroll;
+
 }
 
 .creme {
@@ -47,6 +49,19 @@ body,
   background-color: #3e0003;
 }
 
+
+textarea, textarea:focus{
+  height: 90px;
+  font-weight: bold;
+  background-color: #400A07;
+  color: #fff;
+  border-radius: 5px;
+  padding-left: 10px;
+  outline: none;
+  border: 2px solid #FFF;
+  width: 90%;
+}
+
 #LogoAmal {
   display: inline-block;
   height: 164px;
@@ -56,7 +71,7 @@ body,
 
 ul {
   list-style: none;
-  padding: 0px; 
+  padding: 0px;
   margin: 0px;
 }
 
@@ -67,7 +82,7 @@ ul li {
 }
 
 .MenuCentral {
-  display: inline-table; 
+  display: inline-table;
 }
 
 .MenuCentral li {
@@ -122,26 +137,19 @@ button:hover,
 
 
 .CarouselApproval {
-  min-height: 40vh;  
+  min-height: 40vh;
   background-color: #fff;
   color: black;
 }
 
-.dataTable {
-  
-  overflow: hidden;
-}
-
-
-
-.gVZomo {
-  overflow: hidden;
+.dataTable, .gVZomo {
+  overflow: hidden !important;
 }
 
 .linkHome {
   color: white;
   margin-top: 20px;
-  margin-left: 80%; 
+  margin-left: 80%;
   position:absolute ;
   z-index:150;
 }

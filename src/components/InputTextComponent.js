@@ -11,8 +11,7 @@ export default class InputTextComponent extends Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
-        this.storage.setItem(this.props.element.id, this.state.value)
+        this.setState({value: event.target.value});        
     }
 
     render() {
@@ -23,13 +22,13 @@ export default class InputTextComponent extends Component {
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
                     <input  onChange={this.handleChange} value={this.state.value}  type="text" disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} placeholder={this.props.element.placeholder} />
-                </label>                
+                </label>
             </div>
         );
     }
 
     componentDidMount() {
-        
+
     }
-    
+
 }
