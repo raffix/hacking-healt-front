@@ -7,10 +7,7 @@ import { timingSafeEqual } from 'crypto';
 import {Date} from '../helpers/Date'
 import Modal from 'react-awesome-modal';
 import {MudarStatusSolicitacaoService} from '../services/MudarStatusSolicitacaoService'
-
-const divCarouselStyle = {
-  height: '360px'
-}
+import { FaSearchPlus } from "react-icons/fa";
 
 const divModal = {
   color: '#58120D'
@@ -56,36 +53,11 @@ const custonTheme = {
 
 const slides = [
     <ApprovalHistComponent
-        img="https://cactusthemes.com/blog/wp-content/uploads/2018/01/tt_avatar_small.jpg"
-        name="Pateric Silva"
-        personFunction="Chapecó - Triagem"
-        dateApproval="08/10/2018"
-        note="Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Sed sodales, odio a facilisis porttitor,
-        leo dui tincidunt sapien,
-        quis molestie nibh metus eu nisi. Integer lacinia felis libero,
-        ac volutpat eros varius non.
-        Ut lacinia enim in erat bibendum, vitae pretium eros finibus.
-        Fusce ante erat, feugiat eget suscipit nec, placerat vitae elit.
-        Duis nec ex non lacus consectetur elementum scelerisque at sapien.
-        Duis gravida sapien egestas ex porttitor pulvinar.
-        Duis sit amet enim sit amet nisl luctus semper non in ligula.
-        Pellentesque habitant morbi tristique senectus et netus et malesuada
-        fames ac turpis egestas."
-        />,
-        <ApprovalHistComponent
-        img="https://pbs.twimg.com/profile_images/59577478/John_avatar_400x400.jpg"
-        name="Darwin Souza"
-        personFunction="Chapecó - Shriner"
-        dateApproval="10/10/2018"
-        note="Sed eu dui imperdiet, eleifend elit varius, congue sapien.
-        Nulla non metus dolor. Cras lobortis vitae nibh sit amet pulvinar.
-        Duis eget condimentum velit. Donec non vehicula ipsum, eget scelerisque turpis.
-         Mauris tincidunt tortor sit amet mauris ultrices congue.
-         Aenean hendrerit nisi non hendrerit dignissim.
-         Aenean finibus id elit eget faucibus.
-         Pellentesque malesuada quis arcu eget varius.
-         Praesent pulvinar pellentesque sapien eu tristique."
+        img=""
+        name=""
+        personFunction=""
+        dateApproval=""
+        note=""
         />
 ];
 
@@ -101,7 +73,10 @@ export default class CarouselApprovalComponent extends Component {
       visibleActions: {display: 'none'},
       observacao: "",
       id_solicitacao: 0,
-      actions: []
+      actions: [],
+      divCarouselStyle: {
+        height: '360px'
+      }
     }
 
     storage = localStorage
@@ -143,6 +118,13 @@ export default class CarouselApprovalComponent extends Component {
             let tipoAcaoProfissional = row.object.SolicitacaoProfissional.TipoDeAcaoProfissional.descricao_tipo_a
             let custoEstimado = row.object.SolicitacaoProfissional.custo_estimado
             let dtNecessidade = row.object.SolicitacaoProfissional.dt_necessidade
+
+            if (especialidadeProfissional == 'Outra')
+              especialidadeProfissional = row.object.SolicitacaoProfissional.outra_especialidade
+
+            if (tipoAcaoProfissional == 'Outra')
+                tipoAcaoProfissional = row.object.SolicitacaoProfissional.outra_acao
+
             textModal.push("Especialidade do profissional: "+especialidadeProfissional)
             textModal.push("Tipo de ação do profissional: "+ tipoAcaoProfissional)
             textModal.push("Custo estimado do profissional: R$ "+ custoEstimado)
@@ -156,7 +138,7 @@ export default class CarouselApprovalComponent extends Component {
             this.openModal()
           }
           }>
-            Visualizar mais
+            <FaSearchPlus />
           </a>
         ),
         ignoreRowClick: true,
@@ -223,7 +205,7 @@ export default class CarouselApprovalComponent extends Component {
           }
 
           this.setState({visibleActions: {display: 'block'}})
-          this.setState({id_solicitacao: d.id})
+          this.setState({id_solicitacao: d.id_solicitacao})
 
           slides.push(<ApprovalHistComponent
             img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxHyfjsbFqGOlnJExJuFJ9kx3dZWIifCAqWS2MtflSAT5pEoeOgA"
@@ -234,8 +216,57 @@ export default class CarouselApprovalComponent extends Component {
             />)
         })
 
-        if (slides.length > 1)
+        let actions = []
+        let id_perfil = this.storage.getItem('perfil')
+        let id_status = row.object.StatusAtualSolicitacaos[0].id_status
+        let buttonAnalise = true
+
+        if (id_status === 4 || id_status === 7 || id_status === 10) {
+          buttonAnalise = false
+        }
+
+        switch (id_perfil) {
+          case "3":
+            actions = [
+              <button className="" onClick={() => {this.submit(2)}} >Deferir</button>,
+              <button className="" onClick={() => {this.submit(3)}} >Indeferir</button>
+            ]
+            break;
+          case "4":
+            actions = []
+            if (buttonAnalise == true)
+              actions.push (<button className="" onClick={() => {this.submit(4)}} >Pegar para análise</button>)
+            actions.push(<button className="" onClick={() => {this.submit(5)}} >Resolvido</button>)
+            actions.push(<button className="" onClick={() => {this.submit(6)}} >Solicitar para regional</button>)
+            break;
+          case "5":
+            actions = []
+            if (buttonAnalise == true)
+              actions.push(<button className="" onClick={() => {this.submit(7)}} >Pegar para análise</button>)
+            actions.push(<button className="" onClick={() => {this.submit(8)}} >Resolvido</button>)
+            actions.push(<button className="" onClick={() => {this.submit(9)}} >Solicitar para regional</button>)
+            break;
+          case "6":
+            actions = []
+            if (buttonAnalise == true)
+              actions.push(<button className="" onClick={() => {this.submit(10)}} >Pegar para análise</button>)
+
+            actions.push(<button className="" onClick={() => {this.submit(11)}} >Resolvido</button>)
+            break;
+        }
+        this.setState({actions: actions})
+
+
+        if (slides.length > 1) {
           this.setState({carousal: <Carousel slides={slides}/>})
+          this.setState({divCarouselStyle: {
+            height: '360px'
+          }})
+        } else {
+          this.setState({divCarouselStyle: {
+            height: '0px'
+          }})
+        }
     };
 
     submit(status) {
@@ -252,7 +283,8 @@ export default class CarouselApprovalComponent extends Component {
 
       let service = new MudarStatusSolicitacaoService();
       service.save(data).then(res => res.json).then((result) => {
-        console.log(result);
+        alert("Alteração salva com sucesso")
+        window.location = '/ApprovalScreen'
       })
       console.log(data)
     }
@@ -289,11 +321,11 @@ export default class CarouselApprovalComponent extends Component {
                     onRowClicked={this.handleRowClicked}
                     />
                 </div>
-                <div id="carousel" style={divCarouselStyle}>
+                <div id="carousel" style={this.state.divCarouselStyle}>
                     {this.state.carousal}
                 </div>
                 <div id="actions" style={this.state.visibleActions}>
-                    <p>Observação:*</p>
+                    <p>Feedback:*</p>
                     <div>
                       <textarea onChange={this.handleChange}></textarea>
                     </div>
@@ -304,37 +336,6 @@ export default class CarouselApprovalComponent extends Component {
     };
 
     componentDidMount() {
-      let actions = []
-      let id_perfil = this.storage.getItem('perfil')
 
-      switch (id_perfil) {
-        case "3":
-          actions = [
-            <button className="" onClick={() => {this.submit(2)}} >Deferir</button>,
-            <button className="" onClick={() => {this.submit(3)}} >Indeferir</button>
-          ]
-          break;
-        case "4":
-          actions = [
-            <button className="" onClick={() => {this.submit(4)}} >Pegar para análise</button>,
-            <button className="" onClick={() => {this.submit(5)}} >Resolvido</button>,
-            <button className="" onClick={() => {this.submit(6)}} >Solicitar para regional</button>
-          ]
-          break;
-        case "5":
-          actions = [
-            <button className="" onClick={() => {this.submit(7)}} >Pegar para análise</button>,
-            <button className="" onClick={() => {this.submit(8)}} >Resolvido</button>,
-            <button className="" onClick={() => {this.submit(9)}} >Solicitar para regional</button>
-          ]
-          break;
-        case "6":
-          actions = [
-            <button className="" onClick={() => {this.submit(10)}} >Pegar para análise</button>,
-            <button className="" onClick={() => {this.submit(11)}} >Resolvido</button>,
-          ]
-          break;
-      }
-      this.setState({actions: actions})
     }
 }

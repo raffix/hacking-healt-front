@@ -9,6 +9,11 @@ import './../styles/Formulario.css';
 import './../styles/LoginStyle.css';
 import './../styles/MinhasSolicitacoesStyle.css';
 import {SolicitacoesSolicitanteService} from '../services/SolicitacoesSolicitanteService';
+import {Date} from '../helpers/Date'
+import { FaEdit } from "react-icons/fa";
+
+const storage = localStorage
+
 
 const custonTheme = {
   title: {
@@ -46,35 +51,14 @@ const custonTheme = {
 
 const solicitacoes = [
   {
-    'id': 1,
-    'nome': 'Hospital Regional do Oeste',
-    'tipo': 'Material',
-    'status': 'Avaliação',
-    'data': '01/04/2019',
-  },
-  {
-    'id': 2,
-    'nome': 'João Silva',
-    'tipo': 'Criança',
-    'status': 'Avaliação',
-    'data': '10/04/2019',
-  },
-  {
-    'id': 3,
-    'nome': 'Hospital Regional do Oeste',
-    'tipo': 'Material',
-    'status': 'Avaliação',
-    'data': '01/02/2019',
-  },
-  {
-    'id': 4,
-    'nome': 'Hospital Regional do Oeste',
-    'tipo': 'Material',
-    'status': 'Avaliação',
-    'data': '03/03/2019',
-  },
+    'id': null,
+    'nome': null,
+    'tipo': null,
+    'status': null,
+    'data': null,
+  }
 ]
- 
+
 const columns = [
   {
       name: 'Id',
@@ -102,6 +86,35 @@ const columns = [
     selector: 'data',
     sortable: true,
   },
+  {
+    cell: (row) => (
+      <a onClick={() => {
+        console.log(row)
+        if (row.status != 'Solicitado') {
+          alert('Você só pode atualizar solicitações que ainda não foram analisadas!')
+          return false;
+        }
+        if (row.tipo === 'Profissional') {
+          storage.setItem("descricao", row.descricao)
+
+          Object.keys(row.obj.SolicitacaoProfissional).map(i => {
+            storage.setItem(i, row.obj.SolicitacaoProfissional[i])
+          });
+
+          storage.setItem('dt_necessidade', Date.isoTODatePtBr(row.obj.SolicitacaoProfissional.dt_necessidade))
+
+          window.location.href = '/FormularioProfissional?update=1'
+
+        }
+      }
+      }>
+        <FaEdit />
+      </a>
+    ),
+    ignoreRowClick: true,
+    allowOverflow: true,
+    button: true,
+  },
 ];
 
 class MinhasSolicitacoes extends Component {
@@ -116,7 +129,7 @@ class MinhasSolicitacoes extends Component {
   async getData () {
     let service = new SolicitacoesSolicitanteService();
     service.getAll().then(res => res.json())
-    .then((result) => {      
+    .then((result) => {
       console.log(result);
       let solicitacoes = [];
       result.map(d => {
@@ -125,7 +138,8 @@ class MinhasSolicitacoes extends Component {
           'descricao': d.descricao,
           'tipo': d.TipoSolicitacao.descricao_tipo,
           'status': d.StatusAtualSolicitacaos[0].StatusSolicitacao.descricao,
-          'data': d.dt_solicitacao
+          'data': Date.isoTODatePtBr(d.dt_solicitacao),
+          'obj': d
         })
       })
 
@@ -139,7 +153,10 @@ class MinhasSolicitacoes extends Component {
   render() {
     return (
       <div className="App">
-        <Link className="linkHome" to="/Inicial">Home</Link>
+        <div className="breadcrumbs">
+          <Link className="linkBreadCrumb" to="/Inicial">Home</Link> /
+          <a>Solicitações</a>
+        </div>
         <div className="ContainerSolicitacoes">
           <div className="dataTable">
                     <DataTable

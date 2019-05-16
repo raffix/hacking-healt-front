@@ -146,12 +146,17 @@ button:hover,
   overflow: hidden !important;
 }
 
-.linkHome {
-  color: white;
+
+.breadcrumbs {
   margin-top: 20px;
-  margin-left: 80%;
+  margin-left: 60%;
   position:absolute ;
   z-index:150;
+  color: white;
+}
+
+.linkBreadCrumb {
+  color: white;
 }
 
 @keyframes App-logo-spin {

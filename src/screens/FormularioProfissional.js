@@ -11,6 +11,8 @@ import {TiposDeAcoesService} from '../services/TiposDeAcoesProfissionaisService'
 import {EspecialidadesProfissionaisService} from '../services/EspecialidadesProfissionaisService';
 import {SolicitacaoProfissionalService} from '../services/SolicitacaoProfissionalService';
 
+const storage = localStorage
+
 const inputs = [
   {
       "id": "descricao",
@@ -23,10 +25,10 @@ const inputs = [
   {
     "id": "id_especialidade",
     "title": "Especialidade profissional",
-    "subtitle": "Selecione a especialidade desejada",    
+    "subtitle": "Selecione a especialidade desejada",
     "type": "select",
     "options": [
-    
+
     ],
   },
   {
@@ -40,10 +42,10 @@ const inputs = [
   {
     "id": "id_tipo_acao",
     "title": "Tipo de ação",
-    "subtitle": "Selecione a atividade que o profissional deve desempenhar",    
+    "subtitle": "Selecione a atividade que o profissional deve desempenhar",
     "type": "select",
     "options": [
-     
+
     ],
   },
   {
@@ -66,20 +68,29 @@ const inputs = [
     "title": "Custo estimado",
     "subtitle": "Informe o custo estimado",
     "hint": "",
-    "placeholder": "Ex: 5500.50",
-    "type": "text"
-  },       
+    "placeholder": "Ex: 5500,50",
+    "type": "numerical"
+  },
 ];
+
 
 class FormularioProfissional extends Component {
 
   state = {inputs: inputs}
 
-  constructor(pros) {
-    super(pros);
+  constructor(props) {
+    super(props);
+    if (
+      props.location.search.length == 0 && storage.getItem('id') != null
+    ) {
+      this.state.inputs.map(i => {
+        storage.removeItem(i.id)
+      })
+
+      storage.removeItem('id')
+    }
 
     this.setDataForm();
-
   }
 
   async setDataForm() {
@@ -91,7 +102,7 @@ class FormularioProfissional extends Component {
       result.map(d => {
         tiposDeAcoes.push({value: d.id, description: d.descricao_tipo_acao});
       })
-        
+
       let inputs = this.state.inputs;
       inputs[3].options = tiposDeAcoes
       this.setState({inputs: inputs})
@@ -106,7 +117,7 @@ class FormularioProfissional extends Component {
       result.map(d => {
         especialidadesProfissionais.push({value: d.id, description: d.descricao});
       })
-        
+
       let inputs = this.state.inputs;
       inputs[1].options = especialidadesProfissionais
       this.setState({inputs: inputs})
@@ -118,29 +129,48 @@ class FormularioProfissional extends Component {
     let data = {}
     this.inputs.map(d => {
         data[d.id] = storage.getItem(d.id)
-    }) 
-
-    let service = new SolicitacaoProfissionalService();
-    service.save(data).then(res => res.json())
-    .then((result) => {
-      alert("Solicitação salva com sucesso");
-      this.inputs.map(d => {
-        storage.removeItem(d.id)
-      }) 
-      window.location = '/Inicial';
-    }, (error) => {
-      alert("Erro! Contate o Administrador");
-      console.log(error)
     })
+
+    let service = new SolicitacaoProfissionalService()
+    let id = storage.getItem('id')
+
+    if (id === null){
+      service.save(data).then(res => res.json())
+      .then((result) => {
+        alert("Solicitação salva com sucesso");
+        this.inputs.map(d => {
+          storage.removeItem(d.id)
+        })
+        window.location = '/Inicial';
+      }, (error) => {
+        alert("Erro! Contate o Administrador");
+        console.log(error)
+      })
+    } else {
+      service.update(id, data).then(res => res.json())
+      .then((result) => {
+        alert("Solicitação atualizada com sucesso");
+        this.inputs.map(d => {
+          storage.removeItem(d.id)
+        })
+        window.location = '/MinhasSolicitacoes';
+      }, (error) => {
+        alert("Erro! Contate o Administrador");
+        console.log(error)
+      })
+    }
 
     console.log(data);
   }
 
   render() {
     return (
-      
+
       <div className="App">
-        <Link className="linkHome" to="/Inicial">Home</Link>  
+        <div className="breadcrumbs">
+          <Link className="linkBreadCrumb" to="/Inicial">Home</Link> /
+          <a>Solicitação Profissional de Saúde</a>
+        </div>
         <FormTitleComponent title={'Formulário Profissional'} />
         <NavigationFormComponent submit={this.submit} inputs={inputs} />
       </div>

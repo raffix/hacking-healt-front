@@ -10,8 +10,18 @@ export class SolicitacaoProfissionalService extends AbstractService {
             headers: this.headers,
             body: JSON.stringify(data)
         }
-        
+
         return fetch(AppSettings.BASE_URL + "/solicitacao-profissional", options);
+    }
+
+    update(id, data) {
+      let options = {
+          method: 'PUT',
+          headers: this.headers,
+          body: JSON.stringify(data)
+      }
+
+      return fetch(AppSettings.BASE_URL + "/solicitacao-profissional/"+id, options);
     }
 
 }

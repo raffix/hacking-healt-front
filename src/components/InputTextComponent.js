@@ -8,10 +8,11 @@ export default class InputTextComponent extends Component {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this);
+        
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});        
+        this.setState({value: event.target.value});
     }
 
     render() {
@@ -21,7 +22,7 @@ export default class InputTextComponent extends Component {
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
-                    <input  onChange={this.handleChange} value={this.state.value}  type="text" disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} placeholder={this.props.element.placeholder} />
+                    <input onChange={this.handleChange} value={this.state.value}  type="text" disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} placeholder={this.props.element.placeholder} />
                 </label>
             </div>
         );
