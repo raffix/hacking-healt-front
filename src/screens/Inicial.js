@@ -38,7 +38,7 @@ class Inicial extends LoginValidate {
           if (perfil.id == 2) {
             menu.push(<li key="4"> <Link to="/SobreCrianca" className="HomeButton">Atendimento a criança</Link> </li>);
             menu.push(<li key="5"> <Link to="/FormularioMateriais" className="HomeButton">Materiais / Produtos</Link> </li>);
-            menu.push(<li key="6"> <Link to="/FormularioProfissional" className="HomeButton">Profissionais</Link> </li>);
+            menu.push(<li key="6"> <Link to="/FormularioProfissional?clear=1" className="HomeButton">Profissionais</Link> </li>);
             menu.push(<li key="7"> <Link to="/MinhasSolicitacoes" className="HomeButton">Solicitações</Link> </li>);
           } else if (perfil.id > 2) {
             menu.push(<li> <Link to="/ApprovalScreen" className="HomeButton">Aprovação</Link> </li>);

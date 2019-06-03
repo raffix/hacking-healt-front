@@ -108,7 +108,7 @@ class FormularioProfissional extends Component {
     let acoes = []
     let especialidadesStorage = []
     let acoesStorage = []
-
+   
     if (this.props.match.params.hasOwnProperty('id') && this.props.match.params.id > 0) {
 
       let service = new SolicitacoesAprovacaoService();
@@ -171,7 +171,7 @@ class FormularioProfissional extends Component {
           }
       })
 
-    } else {
+    } else if (this.props.location.search == '?clear=1') {
       this.state.inputs.map(i => {
         storage.removeItem(i.id)
       })

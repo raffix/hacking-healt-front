@@ -104,8 +104,6 @@ const columns = [
           return false;
         }
 
-
-        storage.setItem('reload', 1);
         storage.setItem("descricao", row.descricao)
 
         Object.keys(row.obj.SolicitacaoProfissional).map(i => {

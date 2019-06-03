@@ -125,7 +125,22 @@ class FormularioProfissionalPreview extends Component {
     return (
       <div className="App">
         <div className="breadcrumbs">
-          <Link className="linkBreadCrumb" to="/Inicial">Home</Link> /
+          <Link className="linkBreadCrumb" to="/Inicial">Home</Link> /     
+          {
+            storage.getItem('perfil') != '2' ?
+            <span><Link className="linkBreadCrumb" to="/ApprovalScreen">Aprovação</Link> / </span>: false
+          }    
+
+          {
+            this.props.match.params.hasOwnProperty('id') && this.props.match.params.id > 0 && storage.getItem('perfil') == '2' ? 
+            <span><Link className="linkBreadCrumb" to="/MinhasSolicitacoes">Minhas solicitações</Link> / </span> : false
+          }
+
+          {
+            !this.props.match.params.hasOwnProperty('id') && storage.getItem('perfil') == '2' ? 
+            <span><Link className="linkBreadCrumb" to="/FormularioProfissional">Formulário solicitação profissional</Link> / </span> : false
+          }
+          
           <a>Requisição profissional</a>
         </div>
 
@@ -358,6 +373,20 @@ class FormularioProfissionalPreview extends Component {
 
         if (d == 'id_especialidade' || d == 'id_tipo_acao') {
             data[d] = storage.getItem(d).split(',')
+        } else if (d == 'custo_estimado') {       
+          let custo = storage.getItem(d)
+          console.log(custo)
+          if (custo.indexOf(',') > -1) {
+            if (custo.indexOf('.')  > -1) {
+              custo = custo.replace(".", "")
+              custo = custo.replace(",", ".")              
+            } else {
+              custo = custo.replace(",", ".")              
+            }
+           
+            if (custo != null && custo != '')
+              data[d] = custo
+          } 
         } else {
           data[d] = storage.getItem(d)
         }
@@ -375,6 +404,19 @@ class FormularioProfissionalPreview extends Component {
 
       service.update(id, data).then(res => res.json())
       .then((result) => {
+
+        if (result.hasOwnProperty('errors')) {
+          let errors = "Dados inválidos \n\n"
+
+          result.errors.map(e => {
+            errors += e.msg+"\n"
+          })
+
+          alert(errors)
+
+          return false
+        }
+
         alert("Solicitação atualizada com sucesso");
         inputs.map(d => {
           storage.removeItem(d.id)
@@ -388,11 +430,24 @@ class FormularioProfissionalPreview extends Component {
     } else {
       service.save(data).then(res => res.json())
       .then((result) => {
+        console.log(result)
+        if (result.hasOwnProperty('errors')) {
+          let errors = "Dados inválidos \n\n"
+
+          result.errors.map(e => {
+            errors += e.msg+"\n"
+          })
+
+          alert(errors)
+
+          return false
+        }
+
         alert("Solicitação salva com sucesso");
         inputs.map(d => {
           storage.removeItem(d.id)
         })
-
+        
         window.location = '/Inicial';
       }, (error) => {
         alert("Erro! Contate o Administrador");
