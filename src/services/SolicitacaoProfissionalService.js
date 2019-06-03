@@ -24,4 +24,5 @@ export class SolicitacaoProfissionalService extends AbstractService {
       return fetch(AppSettings.BASE_URL + "/solicitacao-profissional/"+id, options);
     }
 
+
 }

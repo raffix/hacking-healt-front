@@ -10,23 +10,17 @@ import FormTitleComponent from './../components/FormTitleComponent';
 import {TiposDeAcoesService} from '../services/TiposDeAcoesProfissionaisService';
 import {EspecialidadesProfissionaisService} from '../services/EspecialidadesProfissionaisService';
 import {SolicitacaoProfissionalService} from '../services/SolicitacaoProfissionalService';
+import {SolicitacoesAprovacaoService} from '../services/SolicitacoesAprovacaoService';
+import {Date} from '../helpers/Date'
 
 const storage = localStorage
 
 const inputs = [
   {
-      "id": "descricao",
-      "title": "Descrição",
-      "subtitle": "",
-      "hint": "",
-      "placeholder": "Descrição da solicitação",
-      "type": "text"
-  },
-  {
     "id": "id_especialidade",
-    "title": "Especialidade profissional",
+    "title": "Especialidade profissional*",
     "subtitle": "Selecione a especialidade desejada",
-    "type": "select",
+    "type": "checkbox",
     "options": [
 
     ],
@@ -41,9 +35,9 @@ const inputs = [
   },
   {
     "id": "id_tipo_acao",
-    "title": "Tipo de ação",
-    "subtitle": "Selecione a atividade que o profissional deve desempenhar",
-    "type": "select",
+    "title": "Tipo de ação*",
+    "subtitle": "Qual a atividade que o profissional deve desempenhar",
+    "type": "checkbox",
     "options": [
 
     ],
@@ -55,10 +49,27 @@ const inputs = [
     "hint": "",
     "placeholder": "Digite aqui",
     "type": "text"
-  },{
-    "id": "dt_necessidade",
-    "title": "Data necessidade profissional",
-    "subtitle": "Digite a data de necessidade do profissional",
+  },
+  {
+      "id": "descricao",
+      "title": "Justificar necessidade*",
+      "subtitle": "Descrever detalhadamente a necessidade deste profissional bem como se tem alguém em mente e se tiver respectivos custos",
+      "hint": "",
+      "placeholder": "Justificativa da necessidade",
+      "type": "textarea"
+  },
+  {
+    "id": "data_inicial_periodo_necessidade",
+    "title": "Período da necessidade*",
+    "subtitle": "Digite a data inicial do período de necessidade do profissional",
+    "hint": "",
+    "placeholder": "Digite aqui",
+    "type": "data"
+  },
+  {
+    "id": "data_final_periodo_necessidade",
+    "title": "Período da necessidade*",
+    "subtitle": "Digite a data final do período de necessidade do profissional",
     "hint": "",
     "placeholder": "Digite aqui",
     "type": "data"
@@ -71,6 +82,14 @@ const inputs = [
     "placeholder": "Ex: 5500,50",
     "type": "numerical"
   },
+  {
+    "id": "justificativa_valor",
+    "title": "Justificativa do valor",
+    "subtitle": "",
+    "hint": "",
+    "placeholder": "Justificar o valor",
+    "type": "textarea"
+  },
 ];
 
 
@@ -80,17 +99,85 @@ class FormularioProfissional extends Component {
 
   constructor(props) {
     super(props);
-    if (
-      props.location.search.length == 0 && storage.getItem('id') != null
-    ) {
+    this.setAllData();
+    this.setDataForm();
+  }
+
+  async setAllData(){
+    let especialidades = []
+    let acoes = []
+    let especialidadesStorage = []
+    let acoesStorage = []
+
+    if (this.props.match.params.hasOwnProperty('id') && this.props.match.params.id > 0) {
+
+      let service = new SolicitacoesAprovacaoService();
+      service.getById(this.props.match.params.id)
+      .then(res => res.json())
+      .then(result => {
+
+        this.setState({
+            descricao: result.descricao,
+            data_inicial_periodo_necessidade: Date.isoTODatePtBr(result.SolicitacaoProfissional.data_inicial_periodo_necessidade),
+            data_final_periodo_necessidade: Date.isoTODatePtBr(result.SolicitacaoProfissional.data_final_periodo_necessidade),
+            custo_estimado: result.SolicitacaoProfissional.custo_estimado,
+            justificativa_valor: result.SolicitacaoProfissional.justificativa_valor,
+            outra_acao: result.SolicitacaoProfissional.outra_acao,
+            outra_especialidade: result.SolicitacaoProfissional.outra_especialidade
+          })
+
+          storage.setItem('descricao', result.descricao)
+          storage.setItem('data_inicial_periodo_necessidade', Date.isoTODatePtBr(result.SolicitacaoProfissional.data_inicial_periodo_necessidade))
+          storage.setItem('data_final_periodo_necessidade', Date.isoTODatePtBr(result.SolicitacaoProfissional.data_final_periodo_necessidade))
+          storage.setItem('custo_estimado', result.SolicitacaoProfissional.custo_estimado)
+          storage.setItem('justificativa_valor', result.SolicitacaoProfissional.justificativa_valor)
+          storage.setItem('outra_acao', result.SolicitacaoProfissional.outra_acao)
+          storage.setItem('outra_especialidade', result.SolicitacaoProfissional.outra_especialidade)
+          storage.setItem('id', this.props.match.params.id)
+
+
+          if (result.StatusAtualSolicitacaos[0].id_status > 1 || (result.StatusAtualSolicitacaos[0].id_status == 1 && result.StatusAtualSolicitacaos[0].concluido == 1)) {
+            this.setState({exibir_actions: false})
+          }
+
+          result.SolicitacaoProfissional.EspecialidadeProfissionals.map(d => {
+            if (d.id != 1) {
+              especialidades.push(<li>{d.descricao}</li>)
+            } else {
+              especialidades.push(<li>{result.SolicitacaoProfissional.outra_especialidade}</li>)
+            }
+            especialidadesStorage.push(d.id)
+          })
+
+          this.setState({especialidade: especialidades})
+
+          result.SolicitacaoProfissional.TipoDeAcaoProfissionals.map(d => {
+            if (d.id != 1) {
+              acoes.push(<li>{d.descricao_tipo_}</li>)
+            } else {
+              acoes.push(<li>{result.SolicitacaoProfissional.outra_acao}</li>)
+            }
+            acoesStorage.push(d.id)
+          })
+
+          storage.setItem('id_especialidade', especialidadesStorage)
+          storage.setItem('id_tipo_acao', acoesStorage)
+
+          this.setState({acoes: acoes})
+
+          if (storage.getItem('reload') == 1) {
+            storage.setItem('reload', 0)
+            window.location.reload()
+          }
+      })
+
+    } else {
       this.state.inputs.map(i => {
         storage.removeItem(i.id)
       })
 
       storage.removeItem('id')
     }
-
-    this.setDataForm();
   }
 
   async setDataForm() {
@@ -104,7 +191,7 @@ class FormularioProfissional extends Component {
       })
 
       let inputs = this.state.inputs;
-      inputs[3].options = tiposDeAcoes
+      inputs[2].options = tiposDeAcoes
       this.setState({inputs: inputs})
     })
 
@@ -119,48 +206,17 @@ class FormularioProfissional extends Component {
       })
 
       let inputs = this.state.inputs;
-      inputs[1].options = especialidadesProfissionais
+      inputs[0].options = especialidadesProfissionais
       this.setState({inputs: inputs})
     })
   }
 
   submit() {
-    let storage = localStorage
-    let data = {}
-    this.inputs.map(d => {
-        data[d.id] = storage.getItem(d.id)
-    })
-
-    let service = new SolicitacaoProfissionalService()
-    let id = storage.getItem('id')
-
-    if (id === null){
-      service.save(data).then(res => res.json())
-      .then((result) => {
-        alert("Solicitação salva com sucesso");
-        this.inputs.map(d => {
-          storage.removeItem(d.id)
-        })
-        window.location = '/Inicial';
-      }, (error) => {
-        alert("Erro! Contate o Administrador");
-        console.log(error)
-      })
+    if (storage.getItem('id') > 0) {
+      window.location.href = '/FormularioProfissionalPreview/'+storage.getItem('id')
     } else {
-      service.update(id, data).then(res => res.json())
-      .then((result) => {
-        alert("Solicitação atualizada com sucesso");
-        this.inputs.map(d => {
-          storage.removeItem(d.id)
-        })
-        window.location = '/MinhasSolicitacoes';
-      }, (error) => {
-        alert("Erro! Contate o Administrador");
-        console.log(error)
-      })
+      window.location.href = '/FormularioProfissionalPreview'
     }
-
-    console.log(data);
   }
 
   render() {
@@ -169,12 +225,16 @@ class FormularioProfissional extends Component {
       <div className="App">
         <div className="breadcrumbs">
           <Link className="linkBreadCrumb" to="/Inicial">Home</Link> /
-          <a>Solicitação Profissional de Saúde</a>
+          <a>Requisição profissional</a>
         </div>
-        <FormTitleComponent title={'Formulário Profissional'} />
-        <NavigationFormComponent submit={this.submit} inputs={inputs} />
+        <FormTitleComponent title={'Requisição profissional'} />
+        <NavigationFormComponent submit={this.submit} inputs={this.state.inputs} />
       </div>
     );
+  }
+
+  componentDidMount() {
+
   }
 }
 

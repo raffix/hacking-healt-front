@@ -9,8 +9,17 @@ export class SolicitacoesAprovacaoService extends AbstractService {
             method: 'GET',
             headers: this.headers
         }
-        
+
         return fetch(AppSettings.BASE_URL + "/solicitacoes-aprovacao", options);
+    }
+
+    getById(id) {
+          let options = {
+              method: 'GET',
+              headers: this.headers
+          }
+
+          return fetch(AppSettings.BASE_URL + "/solicitacoes-aprovacao/"+id, options);      
     }
 
 }

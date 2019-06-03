@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class InputTextComponent extends Component {
+export default class TextAreaComponent extends Component {
 
     storage = localStorage
     state = {value: this.storage.getItem(this.props.element.id)}
@@ -22,7 +22,9 @@ export default class InputTextComponent extends Component {
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
-                    <input onChange={this.handleChange} value={this.state.value}  type="text" disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} placeholder={this.props.element.placeholder} />
+                    <textarea onChange={this.handleChange} disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} >
+                      {this.state.value} 
+                    </textarea>
                 </label>
             </div>
         );

@@ -13,13 +13,33 @@ export default class ActionsButtonsComponent extends Component {
 
     next() {
 
-        let value = document.getElementById(this.props.inputs[this.state.positionNavigation].id).value
-        this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, value)
+        if (this.props.inputs[this.state.positionNavigation].type != 'checkbox') {
+          let value = document.getElementById(this.props.inputs[this.state.positionNavigation].id).value
+          this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, value)
+        } else {
+          let elementsChecked = document.querySelectorAll('input[name="'+this.props.inputs[this.state.positionNavigation].id+'"]:checked');
+          let values = []
+          elementsChecked.forEach(function(e) {
+            values.push(e.value)
+          })
+
+          this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, values)
+        }
 
         let currentPosition = this.state.positionNavigation + 1;
 
-        if (this.props.inputs[currentPosition - 1].type == "select") {
+        if (this.props.inputs[currentPosition - 1].type == "select" || this.props.inputs[currentPosition - 1].type == "checkbox" ) {
             let value = this.storage.getItem(this.props.inputs[currentPosition - 1].id )
+
+            if (value.includes(',')) {
+              let valueArray = value.split(',')
+
+              valueArray.forEach(function(e) {
+                if (e == 1) {
+                  value = 1
+                }
+              })
+            }
 
             if (value != 1) {
                 currentPosition = currentPosition + 1;
@@ -43,8 +63,18 @@ export default class ActionsButtonsComponent extends Component {
 
         let currentPosition = this.state.positionNavigation - 1;
 
-        if (currentPosition > 0 && this.props.inputs[currentPosition - 1].type == "select") {
+        if (currentPosition > 0 && this.props.inputs[currentPosition - 1].type == "select" || currentPosition > 0 && this.props.inputs[currentPosition - 1].type == "checkbox") {
             let value = this.storage.getItem(this.props.inputs[currentPosition - 1].id)
+
+            if (value.includes(',')) {
+              let valueArray = value.split(',')
+
+              valueArray.forEach(function(e) {
+                if (e == 1) {
+                  value = 1
+                }
+              })
+            }
 
             if (value != 1) {
                 currentPosition = currentPosition - 1;
@@ -72,7 +102,7 @@ export default class ActionsButtonsComponent extends Component {
                 {this.props.inputs.length - 1 === this.state.positionNavigation ?
                     <button className="ActionsButtonsPrimary"  onClick={() => {
                         let value = document.getElementById(this.props.inputs[this.state.positionNavigation].id).value
-                        this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, value)                                       
+                        this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, value)
                         this.props.submit();
                     }}>
                        Salvar

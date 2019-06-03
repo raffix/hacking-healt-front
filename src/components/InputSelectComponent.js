@@ -9,7 +9,6 @@ export default class InputSelectComponent extends Component {
         super(props)
         console.log(props)
         this.handleChange = this.handleChange.bind(this);
-        console.log(this.state.value)
     }
 
     handleChange(event) {
@@ -43,6 +42,6 @@ export default class InputSelectComponent extends Component {
 
     componentDidMount() {
       if (this.storage.getItem('id') == null)
-          this.persistField()      
+          this.persistField()
     }
 }

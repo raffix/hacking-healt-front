@@ -9,7 +9,6 @@ import './../styles/LoginStyle.css';
 import {AppSettings} from '../app.settings';
 
 class Login extends Component {
-  
 
   constructor(props) {
     super(props);
@@ -18,13 +17,14 @@ class Login extends Component {
     console.log(token)
     if(token !== null && token !== '')
       window.location = '/Inicial';
+      return true;
   }
 
   sendLogin() {
     let header = {
       'Content-Type': 'application/json'
     }
-  
+
     let options = {
       method: 'POST',
       body: JSON.stringify({
@@ -33,7 +33,7 @@ class Login extends Component {
       }),
       headers: header
     };
-    
+
 
     fetch(AppSettings.BASE_URL + "/login", options)
       .then(res => res.json())
@@ -41,11 +41,11 @@ class Login extends Component {
         (result) => {
           console.log(result)
           if(result.error === undefined) {
-            window.localStorage.setItem('token', result.token)            
+            window.localStorage.setItem('token', result.token)
             document.getElementById('linkInicial').click();
           } else {
             alert("Login ou senha inválidos");
-          }          
+          }
         },
         (error) => {
           alert("Erro! Contate o Administrador");
@@ -67,13 +67,13 @@ class Login extends Component {
             <label className="LabelInputText">
               <span>Usuário</span>
               <input type="text" name="login" id="login" placeholder="Usuário" />
-            </label>                
+            </label>
           </div>
           <div className="InputText">
             <label className="LabelInputText">
               <span>Senha</span>
               <input type="password" name="senha" id="senha" placeholder="Senha" />
-            </label>                
+            </label>
           </div>
           <div>
             <button className="ActionsButtonsPrimary" onClick={this.sendLogin}>Entrar</button>

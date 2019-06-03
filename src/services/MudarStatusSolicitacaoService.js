@@ -14,4 +14,14 @@ export class MudarStatusSolicitacaoService extends AbstractService {
         return fetch(AppSettings.BASE_URL + "/mudar-status-solicitacao", options);
     }
 
+    update(id, data) {
+        let options = {
+            method: 'PUT',
+            headers: this.headers,
+            body: JSON.stringify(data)
+        }
+
+        return fetch(AppSettings.BASE_URL + "/mudar-status-solicitacao/"+id, options);
+    }
+
 }

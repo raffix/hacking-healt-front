@@ -11,6 +11,8 @@ import './../styles/MinhasSolicitacoesStyle.css';
 import {SolicitacoesSolicitanteService} from '../services/SolicitacoesSolicitanteService';
 import {Date} from '../helpers/Date'
 import { FaEdit } from "react-icons/fa";
+import { FaSearchPlus } from "react-icons/fa";
+
 
 const storage = localStorage
 
@@ -67,13 +69,18 @@ const columns = [
       width: '50px'
   },
   {
-    name: 'Descrição',
+    name: 'Justificativa',
     selector: 'descricao',
     sortable: true,
   },
   {
     name: 'Status',
     selector: 'status',
+    sortable: true,
+  },
+  {
+    name: 'Encaminhado',
+    selector: 'concluido',
     sortable: true,
   },
   {
@@ -88,28 +95,33 @@ const columns = [
   },
   {
     cell: (row) => (
+      <div>
       <a onClick={() => {
         console.log(row)
-        if (row.status != 'Solicitado') {
-          alert('Você só pode atualizar solicitações que ainda não foram analisadas!')
+
+        if (row.obj.StatusAtualSolicitacaos[0].StatusSolicitacao.id != 1 || (row.obj.StatusAtualSolicitacaos[0].concluido == 1 && row.obj.StatusAtualSolicitacaos[0].StatusSolicitacao.id == 1)) {
+          alert("Você não pode alterar esta solicitação após encaminhada!")
           return false;
         }
-        if (row.tipo === 'Profissional') {
-          storage.setItem("descricao", row.descricao)
 
-          Object.keys(row.obj.SolicitacaoProfissional).map(i => {
-            storage.setItem(i, row.obj.SolicitacaoProfissional[i])
-          });
 
-          storage.setItem('dt_necessidade', Date.isoTODatePtBr(row.obj.SolicitacaoProfissional.dt_necessidade))
+        storage.setItem('reload', 1);
+        storage.setItem("descricao", row.descricao)
 
-          window.location.href = '/FormularioProfissional?update=1'
+        Object.keys(row.obj.SolicitacaoProfissional).map(i => {
+          storage.setItem(i, row.obj.SolicitacaoProfissional[i])
+        });
 
-        }
+        window.location.href = '/FormularioProfissional/'+row.id
       }
       }>
         <FaEdit />
       </a>
+      <a onClick={() => {
+        window.location.href = '/FormularioProfissionalPreview/'+row.id
+      }}><FaSearchPlus /></a>
+      </div>
+
     ),
     ignoreRowClick: true,
     allowOverflow: true,
@@ -138,6 +150,7 @@ class MinhasSolicitacoes extends Component {
           'descricao': d.descricao,
           'tipo': d.TipoSolicitacao.descricao_tipo,
           'status': d.StatusAtualSolicitacaos[0].StatusSolicitacao.descricao,
+          'concluido': d.StatusAtualSolicitacaos[0].concluido == 0 ? 'NÃO' : 'SIM',
           'data': Date.isoTODatePtBr(d.dt_solicitacao),
           'obj': d
         })

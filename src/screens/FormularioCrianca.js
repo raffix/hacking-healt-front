@@ -125,7 +125,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "outra_necessidade_especial",
@@ -139,7 +139,7 @@ const inputs = [
          "id": "doenca_psiquiatrica",
          "title": "Doença psiquiátrica",
          "subtitle": "Possui alguma doença psiquiátrica?",
-         "hint": "",         
+         "hint": "",
          "type": "radio",
          "options": [
              {"value": 1, "description": "SIM"},
@@ -153,7 +153,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "CEP",
@@ -162,7 +162,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "cep",
- 
+
      },
      {
          "id": "endereco",
@@ -171,7 +171,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "complemento",
@@ -180,7 +180,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "cidade",
@@ -189,7 +189,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "estado",
@@ -266,7 +266,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "cep",
- 
+
      },
      {
          "id": "endereco_mae",
@@ -275,7 +275,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "complemento_mae",
@@ -284,7 +284,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "cidade_mae",
@@ -293,7 +293,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "estado_mae",
@@ -387,7 +387,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "cep",
- 
+
      },
      {
          "id": "endereco_pai",
@@ -396,7 +396,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "complemento_pai",
@@ -405,7 +405,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "cidade_pai",
@@ -414,7 +414,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "estado_pai",
@@ -521,7 +521,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "cep",
- 
+
      },
      {
          "id": "endereco_responsavel",
@@ -530,7 +530,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "complemento_responsavel",
@@ -539,7 +539,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "cidade_responsavel",
@@ -548,7 +548,7 @@ const inputs = [
          "hint": "",
          "placeholder": "Digite aqui",
          "type": "text",
- 
+
      },
      {
          "id": "estado_responsavel",
@@ -628,14 +628,14 @@ const inputs = [
          "placeholder": "Digite aqui",
          "type": "text",
      },
- 
+
      //situação clinica criança
- 
+
      {
          "id": "situacao_clinica_crianca[]",
          "title": "Assinale qual a situação clínica",
          "subtitle": "Assinale as opções que se enquadram na situação clínica da criança",
-         "hint": "",      
+         "hint": "",
          "type": "checkbox",
          "options": [
           {"value": 1, "description": "Situação 1"},
@@ -801,7 +801,7 @@ const inputs = [
              {"value": 4, "description": "ALTERAÇÕES NO TRATO GASTROINTESTINAL"},
          ],
      },
- 
+
      //ANEXAR BOX OU TEAM DRIVE NESSE
      {
          "id": "exame_realizado",
@@ -933,7 +933,7 @@ const inputs = [
          "options": [
           {"value": 1, "description": "OPÇÃO 1"},
           {"value": 2, "description": "OPÇÃO 2"},
-          {"value": 3, "description": "OPÇÃO 3"},          
+          {"value": 3, "description": "OPÇÃO 3"},
           {"value": 4, "description": "OUTRO"},
       ],
      },
@@ -954,7 +954,7 @@ const inputs = [
          "type": "text",
      }
  ]
- 
+
 class FormularioCrianca extends Component {
   render() {
     return (
