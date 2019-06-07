@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+
 
 export default class InputCheckboxComponent extends Component {
 
@@ -30,14 +34,30 @@ export default class InputCheckboxComponent extends Component {
 
     render() {
         return (
-            <div className="InputText">
+            <div  className={"InputText "+this.props.element.id}>
                 <h3><span>{this.props.sequence}</span>{this.props.element.title}</h3>
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
                     {this.props.element.options.map(op => {
                        return <div key={op.value} className="checkbox-container">
-                          <input key={op.value} type="checkbox" onChange={this.handleChange} checked={this.state.valuesArray.indexOf(op.value.toString()) > -1 ? true : false}  name={this.props.element.id} value={op.value} /> {op.description}
+                         <FormGroup row>
+                        <FormControlLabel
+                      control={
+                         <Checkbox
+                          checked={this.state.valuesArray.indexOf(op.value.toString()) > -1 ? true : false}
+                          onChange={this.handleChange}
+                          value={op.value}                      
+                          color="primary"
+                          key={op.value}
+                          inputProps={{
+                            'aria-label': 'secondary checkbox',
+                            'name': op.id
+                          }}
+                        />
+                      }
+                      label={op.description}
+                    /></FormGroup>
                        </div>
                     })}
                 </label>

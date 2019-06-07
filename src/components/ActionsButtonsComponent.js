@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { IoMdReturnLeft } from 'react-icons/io';
+import  AlertDialog from '../helpers/AlertDialog'
 
 export default class ActionsButtonsComponent extends Component {
 
@@ -9,19 +10,30 @@ export default class ActionsButtonsComponent extends Component {
         positionNavigation: 0,
         disableNext: false,
         disablePrevious: true,
+        openDialog: null
     }
 
-    next() {
+    constructor(props) {
+      super(props)
+    } 
 
+    next() {
         if (this.props.inputs[this.state.positionNavigation].type != 'checkbox') {
           let value = document.getElementById(this.props.inputs[this.state.positionNavigation].id).value
           this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, value)
         } else {
-          let elementsChecked = document.querySelectorAll('input[name="'+this.props.inputs[this.state.positionNavigation].id+'"]:checked');
+          let elementsChecked = document.querySelectorAll('.'+this.props.inputs[this.state.positionNavigation].id+' input[type="checkbox"]:checked');
+          
           let values = []
           elementsChecked.forEach(function(e) {
             values.push(e.value)
           })
+
+        
+          if (values.length == 0) {
+            this.setState({openDialog: <AlertDialog  open={true} />})            
+            return this.state.positionNavigation
+          }
 
           this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, values)
         }
@@ -99,6 +111,7 @@ export default class ActionsButtonsComponent extends Component {
     render() {
         return (
             <div>
+              {this.state.openDialog}
                 {this.props.inputs.length - 1 === this.state.positionNavigation ?
                     <button className="ActionsButtonsPrimary"  onClick={() => {
                         let value = document.getElementById(this.props.inputs[this.state.positionNavigation].id).value
@@ -111,10 +124,11 @@ export default class ActionsButtonsComponent extends Component {
                         Avançar
                     </button>
                 }
+              {/* <button onClick={AlertDialog.handleClickOpen()}>Teste</button> */}
 
                 <a className="ActionsButtonsLink" disabled={this.state.disablePrevious} onClick={this.props.handlerPrevious}>Voltar pergunta <IoMdReturnLeft /></a>
             </div>
         );
     };
-
+    
 }

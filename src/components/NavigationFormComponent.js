@@ -16,7 +16,7 @@ import TextAreaComponent from './TextAreaComponent';
 export default class NavigationFormComponent extends Component {
 
     state = {positionNavigation: 0, casesMove: 1, elements: []}
-
+    
     constructor(props) {
         super(props);
         this.handlerNext = this.handlerNext.bind(this)
