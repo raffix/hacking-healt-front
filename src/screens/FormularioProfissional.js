@@ -21,6 +21,7 @@ const inputs = [
     "title": "Especialidade profissional*",
     "subtitle": "Selecione a especialidade desejada",
     "type": "checkbox",
+    'required': true,
     "options": [
 
     ],
@@ -29,6 +30,7 @@ const inputs = [
     "id": "outra_especialidade",
     "title": "Outra especialidade",
     "subtitle": "Digite a especialidade",
+    'required': true,
     "hint": "",
     "placeholder": "Digite aqui",
     "type": "text"
@@ -38,6 +40,7 @@ const inputs = [
     "title": "Tipo de ação*",
     "subtitle": "Qual a atividade que o profissional deve desempenhar",
     "type": "checkbox",
+    'required': true,
     "options": [
 
     ],
@@ -47,6 +50,7 @@ const inputs = [
     "title": "Outra Ação",
     "subtitle": "Digite a ação desempenhada",
     "hint": "",
+    'required': true,
     "placeholder": "Digite aqui",
     "type": "text"
   },
@@ -56,7 +60,8 @@ const inputs = [
       "subtitle": "Descrever detalhadamente a necessidade deste profissional bem como se tem alguém em mente e se tiver respectivos custos",
       "hint": "",
       "placeholder": "Justificativa da necessidade",
-      "type": "textarea"
+      "type": "textarea",
+      'required': true
   },
   {
     "id": "data_inicial_periodo_necessidade",
@@ -64,7 +69,8 @@ const inputs = [
     "subtitle": "Digite a data inicial do período de necessidade do profissional",
     "hint": "",
     "placeholder": "Digite aqui",
-    "type": "data"
+    "type": "data",
+    'required': true
   },
   {
     "id": "data_final_periodo_necessidade",
@@ -72,7 +78,8 @@ const inputs = [
     "subtitle": "Digite a data final do período de necessidade do profissional",
     "hint": "",
     "placeholder": "Digite aqui",
-    "type": "data"
+    "type": "data",
+    'required': true
   },
   {
     "id": "custo_estimado",
@@ -80,7 +87,7 @@ const inputs = [
     "subtitle": "Informe o custo estimado",
     "hint": "",
     "placeholder": "Ex: 5500,50",
-    "type": "numerical"
+    "type": "numerical",    
   },
   {
     "id": "justificativa_valor",

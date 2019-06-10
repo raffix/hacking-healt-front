@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { IoMdReturnLeft } from 'react-icons/io';
-import  AlertDialog from '../helpers/AlertDialog'
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 export default class ActionsButtonsComponent extends Component {
 
@@ -10,7 +15,7 @@ export default class ActionsButtonsComponent extends Component {
         positionNavigation: 0,
         disableNext: false,
         disablePrevious: true,
-        openDialog: null
+        openDialog: false
     }
 
     constructor(props) {
@@ -20,6 +25,14 @@ export default class ActionsButtonsComponent extends Component {
     next() {
         if (this.props.inputs[this.state.positionNavigation].type != 'checkbox') {
           let value = document.getElementById(this.props.inputs[this.state.positionNavigation].id).value
+
+          if (this.props.inputs[this.state.positionNavigation].hasOwnProperty('required') && this.props.inputs[this.state.positionNavigation].required == true) {
+            if (value == null || value == '') {
+              this.setState({openDialog: true})            
+              return this.state.positionNavigation
+            }
+          }
+
           this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, value)
         } else {
           let elementsChecked = document.querySelectorAll('.'+this.props.inputs[this.state.positionNavigation].id+' input[type="checkbox"]:checked');
@@ -29,10 +42,11 @@ export default class ActionsButtonsComponent extends Component {
             values.push(e.value)
           })
 
-        
-          if (values.length == 0) {
-            this.setState({openDialog: <AlertDialog  open={true} />})            
-            return this.state.positionNavigation
+          if (this.props.inputs[this.state.positionNavigation].hasOwnProperty('required') && this.props.inputs[this.state.positionNavigation].required == true) {
+            if (values.length == 0) {
+              this.setState({openDialog: true})            
+              return this.state.positionNavigation
+            }
           }
 
           this.storage.setItem(this.props.inputs[this.state.positionNavigation].id, values)
@@ -108,6 +122,15 @@ export default class ActionsButtonsComponent extends Component {
         return currentPosition
     }
 
+    handleClickOpen() {
+      this.setState({openDialog: true})
+      
+    }
+  
+    handleClose() {
+      this.setState({openDialog: false})
+    }
+
     render() {
         return (
             <div>
@@ -123,10 +146,30 @@ export default class ActionsButtonsComponent extends Component {
                     <button className="ActionsButtonsPrimary" disabled={this.state.disableNext} onClick={this.props.handlerNext}>
                         Avançar
                     </button>
-                }
-              {/* <button onClick={AlertDialog.handleClickOpen()}>Teste</button> */}
+                }            
 
                 <a className="ActionsButtonsLink" disabled={this.state.disablePrevious} onClick={this.props.handlerPrevious}>Voltar pergunta <IoMdReturnLeft /></a>
+
+                <div>
+                  <Dialog
+                    open={this.state.openDialog}
+                    onClose={() => this.handleClose()}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <DialogTitle id="alert-dialog-title">{"Atenção!"}</DialogTitle>
+                    <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                        Campo obrigatório, preencha este campo para continuar.
+                      </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>          
+                      <Button onClick={() => this.handleClose()} color="primary" autoFocus>
+                        Ok
+                      </Button>
+                    </DialogActions>
+                  </Dialog>
+              </div>
             </div>
         );
     };

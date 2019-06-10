@@ -13,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { AppSettings } from '../app.settings'
-import AlertDialog  from '../helpers/AlertDialog'
 
 function DidFor() {
   return (
@@ -85,7 +84,7 @@ export default function SignIn() {
             fullWidth
             name="senha"
             label="Senha"
-            type="senha"
+            type="password"
             id="senha"
             autoComplete="current-password"
           />
