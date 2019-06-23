@@ -14,17 +14,52 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { AppSettings } from '../app.settings'
 
-function DidFor() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Craido pelo Hub da Saúde '}
-      <Link color="inherit" href="#">
-        Chapecó
-      </Link>      
-    </Typography>
-  );
-}
+const urlAPi = 'http://18.231.117.212/';
 
+class Login extends Component {
+  
+
+  constructor(props) {
+    super(props);
+    let token = window.localStorage.getItem('token');
+    if(token !== null && token !== '')
+      window.location = '/Inicial';
+  }
+
+  sendLogin() {
+    let header = {
+      'Content-Type': 'application/json'
+    }
+
+    let options = {
+      method: 'POST',
+      body: JSON.stringify({
+        login: document.getElementById('login').value,
+        senha: document.getElementById('senha').value
+      }),
+      headers: header
+    };
+    
+
+    fetch(urlAPi + 'login', options)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          if(result.error === undefined) {
+            window.localStorage.setItem('token', result.token)
+            document.getElementById('linkInicial').click();
+          }else 
+            alert(result.error);
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+  }
+
+  recoveryPassword() {
+    console.log('Funcionalidade ainda não implementada');
+  }
 
 const useStyles = makeStyles(theme => ({
   '@global': {

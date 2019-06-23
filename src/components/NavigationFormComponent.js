@@ -43,36 +43,29 @@ export default class NavigationFormComponent extends Component {
 
                 <div className="NavigationFormPrevious">
                     {
-                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type == 'text'?
-                            <InputTextComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} />
+                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type === 'text'?
+                            <InputTextComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} /> 
                             :
                             <div></div>
                     }
 
                     {
-                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type == 'radio'?
-                            <InputRadioComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} />
+                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type === 'radio'?
+                            <InputRadioComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} /> 
                             :
                             <div></div>
                     }
 
                     {
-                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type == 'checkbox'?
-                            <InputCheckboxComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} />
+                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type === 'checkbox'?
+                            <InputCheckboxComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} /> 
                             :
                             <div></div>
                     }
 
                     {
-                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type == 'select'?
-                            <InputSelectComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} />
-                            :
-                            <div></div>
-                    }
-
-                    {
-                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type == 'textarea'?
-                            <TextAreaComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} />
+                        this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type === 'select'?
+                            <InputSelectComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} /> 
                             :
                             <div></div>
                     }
@@ -82,54 +75,54 @@ export default class NavigationFormComponent extends Component {
 
                     <div className="NavigationInputContainer">
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'text' ?
-                                <InputTextComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                            this.props.inputs[this.state.positionNavigation].type === 'text' ? 
+                                <InputTextComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''                                            
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'radio' ?
-                                <InputRadioComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                            this.props.inputs[this.state.positionNavigation].type === 'radio' ? 
+                                <InputRadioComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'checkbox' ?
-                                <InputCheckboxComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                            this.props.inputs[this.state.positionNavigation].type === 'checkbox' ? 
+                                <InputCheckboxComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'select' ?
-                                <InputSelectComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                            this.props.inputs[this.state.positionNavigation].type === 'select' ? 
+                                <InputSelectComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'password' ?
-                                <InputPasswordComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                            this.props.inputs[this.state.positionNavigation].type === 'password' ? 
+                                <InputPasswordComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'data' ?
-                                <InputDataComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                            this.props.inputs[this.state.positionNavigation].type === 'data' ? 
+                                <InputDataComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'cep' ?
+                            this.props.inputs[this.state.positionNavigation].type === 'cep' ? 
                                 <InputCepComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'cpf' ?
-                                <InputCpfComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                           this.props.inputs[this.state.positionNavigation].type === 'cpf' ? 
+                                <InputCpfComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'phone' ?
-                                <InputPhoneComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                            this.props.inputs[this.state.positionNavigation].type === 'phone' ? 
+                                <InputPhoneComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type == 'numerical' ?
-                                <InputNumericalComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
-                        }
+                            this.props.inputs[this.state.positionNavigation].type === 'numerical' ? 
+                                <InputNumericalComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                        }   
 
                         {
                             this.props.inputs[this.state.positionNavigation].type == 'textarea' ?
@@ -140,52 +133,32 @@ export default class NavigationFormComponent extends Component {
                     </div>
                 </div>
 
-
-                <div className="NavigationFormNext">
-                    <span style={{"color": "white", "float": "right"}}>Campo {this.state.positionNavigation + 1} de {this.props.inputs.length} </span>
-                    {
-                        this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type == 'text' ?
-                            <InputTextComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} />
+                <div className="NavigationFormNext">     
+                    <span style={{"color": "white", "float": "right"}}>Campo {this.state.positionNavigation + 1} de {this.props.inputs.length} </span>               
+                    {   
+                        this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type === 'text' ?
+                            <InputTextComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} /> 
                             :
                             <div></div>
                     }
 
-                    {
-                    this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type == 'radio' ?
-                        <InputTextComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} />
+                    {   
+                    this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type === 'radio' ?
+                        <InputTextComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} /> 
                             :
                             <div></div>
                     }
 
-                    {
-                        this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type == 'checkbox' ?
-                            <InputCheckboxComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} />
+                    {   
+                        this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type === 'checkbox' ?
+                            <InputCheckboxComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} /> 
                             :
                             <div></div>
                     }
 
-                    {
-                        this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type == 'select' ?
-                            <InputSelectComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} />
-                            :
-                            <div></div>
-                    }
-
-                    {
-                        this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type == 'textarea' ?
-                            <TextAreaComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} />
-                            :
-                            <div></div>
-                    }
-
-
-                </div>
-
-                <div style={{display: "none"}}>
-
-                    {
-                        this.state.positionNavigation < this.props.inputs.length-2 && this.props.inputs[this.state.positionNavigation + 2].type == 'select' ?
-                            <InputSelectComponent disabled={true} sequence={this.state.positionNavigation + 3} element={this.props.inputs[this.state.positionNavigation + 2]} />
+                    {   
+                        this.state.positionNavigation < this.props.inputs.length-1 && this.props.inputs[this.state.positionNavigation + 1].type === 'select' ?
+                            <InputSelectComponent disabled={true} sequence={this.state.positionNavigation + 2} element={this.props.inputs[this.state.positionNavigation + 1]} /> 
                             :
                             <div></div>
                     }

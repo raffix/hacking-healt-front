@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { IoMdReturnLeft } from 'react-icons/io';
 
+const urlAPi = 'http://18.231.117.212/';
+
 export default class LoginValidate extends Component {
 
     constructor(props) {
