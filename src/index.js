@@ -13,6 +13,7 @@ import FormularioMateriais from './screens/FormularioMateriais';
 import ApprovalScreen from './screens/ApprovalScreen';
 import FormularioProfissional from './screens/FormularioProfissional';
 import MinhasSolicitacoes from './screens/MinhasSolicitacoes';
+import FormularioProfissionalPreview from './screens/FormularioProfissionalPreview'
 
 ReactDOM.render(
     <BrowserRouter>
@@ -25,8 +26,11 @@ ReactDOM.render(
             <Route path="/SobreMateriais" component={SobreMateriais} />
             <Route path="/SobreMateriais" component={SobreMateriais} />
             <Route path="/ApprovalScreen" component={ApprovalScreen} />
+            <Route path="/FormularioProfissional/:id" component={FormularioProfissional} />
             <Route path="/FormularioProfissional" component={FormularioProfissional} />
             <Route path="/MinhasSolicitacoes" component={MinhasSolicitacoes} />
+            <Route path="/FormularioProfissionalPreview/:id" component={FormularioProfissionalPreview} />
+            <Route path="/FormularioProfissionalPreview" component={FormularioProfissionalPreview} />
         </Switch>
     </ BrowserRouter>
     , document.getElementById('root'));

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import InputMask from 'react-input-mask';
 
-export default class InputNumericalComponent extends Component {
+export default class TextAreaComponent extends Component {
+
     storage = localStorage
     state = {value: this.storage.getItem(this.props.element.id)}
 
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this);
+
     }
 
     handleChange(event) {
@@ -21,8 +22,16 @@ export default class InputNumericalComponent extends Component {
                 <label className="LabelInputText">
                     <span>{this.props.element.subtitle}</span>
                     <span>{this.props.element.hint}</span>
-                    <input onChange={this.handleChange} value={this.state.value}  type="number" disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} placeholder={this.props.element.placeholder} />                </label>
+                    <textarea onChange={this.handleChange} disabled={this.props.disabled} name={this.props.element.id} id={this.props.element.id} >
+                      {this.state.value} 
+                    </textarea>
+                </label>
             </div>
         );
     }
+
+    componentDidMount() {
+
+    }
+
 }

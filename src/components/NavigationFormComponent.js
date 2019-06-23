@@ -10,35 +10,37 @@ import InputPhoneComponent from './InputPhoneComponent';
 import InputCepComponent from './InputCepComponent';
 import InputNumericalComponent from './InputNumericalComponent';
 import ActionsButtonsComponent from './ActionsButtonsComponent';
+import TextAreaComponent from './TextAreaComponent';
+
 
 export default class NavigationFormComponent extends Component {
 
-    state = {positionNavigation: 0, casesMove: 1}
-
+    state = {positionNavigation: 0, casesMove: 1, elements: []}
+    
     constructor(props) {
         super(props);
         this.handlerNext = this.handlerNext.bind(this)
         this.handlerPrevious = this.handlerPrevious.bind(this)
-                
+
     }
 
-    handlerNext() {         
+    handlerNext() {
         this.setState({
             positionNavigation: this.refs['actionsButtons'].next()
-        })               
+        })
       }
 
-      handlerPrevious() {            
+      handlerPrevious() {
         this.setState({
             positionNavigation: this.refs['actionsButtons'].previous()
-        })               
+        })
       }
 
     render() {
         return (
             <div className="NavigationForm">
                 {/* { this.props.elements[this.state.positionNavigation] } */}
-                
+
                 <div className="NavigationFormPrevious">
                     {
                         this.state.positionNavigation > 0 && this.props.inputs[this.state.positionNavigation - 1].type === 'text'?
@@ -66,11 +68,11 @@ export default class NavigationFormComponent extends Component {
                             <InputSelectComponent disabled={true} sequence={this.state.positionNavigation} element={this.props.inputs[this.state.positionNavigation - 1]} /> 
                             :
                             <div></div>
-                    }   
+                    }
                 </div>
 
                 <div className="NavigationFormFocus">
-                    
+
                     <div className="NavigationInputContainer">
                         {
                             this.props.inputs[this.state.positionNavigation].type === 'text' ? 
@@ -108,7 +110,7 @@ export default class NavigationFormComponent extends Component {
                         }
 
                         {
-                            this.props.inputs[this.state.positionNavigation].type === 'cpf' ? 
+                           this.props.inputs[this.state.positionNavigation].type === 'cpf' ? 
                                 <InputCpfComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }
 
@@ -122,10 +124,14 @@ export default class NavigationFormComponent extends Component {
                                 <InputNumericalComponent disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
                         }   
 
-                        <ActionsButtonsComponent ref={'actionsButtons'} handlerNext={this.handlerNext} handlerPrevious={this.handlerPrevious} inputs={this.props.inputs} />
+                        {
+                            this.props.inputs[this.state.positionNavigation].type == 'textarea' ?
+                                <TextAreaComponent key={this.props.inputs[this.state.positionNavigation].id} disabled={false} sequence={this.state.positionNavigation + 1} element={this.props.inputs[this.state.positionNavigation]} /> : ''
+                        }
+
+                        <ActionsButtonsComponent ref={'actionsButtons'} handlerNext={this.handlerNext} handlerPrevious={this.handlerPrevious} submit={this.props.submit} inputs={this.props.inputs} />
                     </div>
                 </div>
-
 
                 <div className="NavigationFormNext">     
                     <span style={{"color": "white", "float": "right"}}>Campo {this.state.positionNavigation + 1} de {this.props.inputs.length} </span>               
@@ -157,11 +163,11 @@ export default class NavigationFormComponent extends Component {
                             <div></div>
                     }
 
-                    
-                </div>          
+
+                </div>
 
             </div>
-            
+
         );
     }
 }

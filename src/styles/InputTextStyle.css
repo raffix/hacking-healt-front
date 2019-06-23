@@ -1,14 +1,14 @@
 .InputText h3 {
     padding-top: 3vh;
-    color: white;  
+    color: white;
   }
-  
+
   .InputText h3 span {
     font-size: 0.7em;
-    padding-right: 1vh;  
+    padding-right: 1vh;
   }
-  
-  .InputText input, .InputText input:focus{    
+
+  .InputText input, .InputText input:focus{
     height: 30px;
     font-weight: bold;
     background-color: #400A07;
@@ -20,7 +20,8 @@
   }
 
   .InputText input[type=text],
-  .InputText input[type=password], 
+  .InputText input[type=number],
+  .InputText input[type=password],
   .InputText select {
     width: 100%;
   }
@@ -28,15 +29,13 @@
   .InputText select {
     height: 5vh;
   }
-  
+
   .InputText .LabelInputText span {
-    margin-top: 2vh;
-    margin-bottom: 0.5vh;
     display:block;
     color: #CD9A7B;
-    font-size: 0.8em;
+    font-size: 1em;
   }
-  
+
   .InputText .LabelInputText span:first-child {
     font-weight: bold;
     font-size: 1em;
@@ -68,7 +67,7 @@
     margin-top: 5px;
     margin-left: 5px;
     width: 100%;
-    
+
   }
 
   .InputText .radio-container input::before {

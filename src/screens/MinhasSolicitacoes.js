@@ -8,6 +8,14 @@ import './../styles/ActionsButtonsStyle.css';
 import './../styles/Formulario.css';
 import './../styles/LoginStyle.css';
 import './../styles/MinhasSolicitacoesStyle.css';
+import {SolicitacoesSolicitanteService} from '../services/SolicitacoesSolicitanteService';
+import {Date} from '../helpers/Date'
+import { FaEdit } from "react-icons/fa";
+import { FaSearchPlus } from "react-icons/fa";
+
+
+const storage = localStorage
+
 
 const custonTheme = {
   title: {
@@ -45,35 +53,14 @@ const custonTheme = {
 
 const solicitacoes = [
   {
-    'id': 1,
-    'nome': 'Hospital Regional do Oeste',
-    'tipo': 'Material',
-    'status': 'Avaliação',
-    'data': '01/04/2019',
-  },
-  {
-    'id': 2,
-    'nome': 'João Silva',
-    'tipo': 'Criança',
-    'status': 'Avaliação',
-    'data': '10/04/2019',
-  },
-  {
-    'id': 3,
-    'nome': 'Hospital Regional do Oeste',
-    'tipo': 'Material',
-    'status': 'Avaliação',
-    'data': '01/02/2019',
-  },
-  {
-    'id': 4,
-    'nome': 'Hospital Regional do Oeste',
-    'tipo': 'Material',
-    'status': 'Avaliação',
-    'data': '03/03/2019',
-  },
+    'id': null,
+    'nome': null,
+    'tipo': null,
+    'status': null,
+    'data': null,
+  }
 ]
- 
+
 const columns = [
   {
       name: 'Id',
@@ -82,13 +69,18 @@ const columns = [
       width: '50px'
   },
   {
-    name: 'Nome',
-    selector: 'nome',
+    name: 'Justificativa',
+    selector: 'descricao',
     sortable: true,
   },
   {
     name: 'Status',
     selector: 'status',
+    sortable: true,
+  },
+  {
+    name: 'Encaminhado',
+    selector: 'concluido',
     sortable: true,
   },
   {
@@ -101,18 +93,87 @@ const columns = [
     selector: 'data',
     sortable: true,
   },
+  {
+    cell: (row) => (
+      <div>
+      <a onClick={() => {
+        console.log(row)
+
+        if (row.obj.StatusAtualSolicitacaos[0].StatusSolicitacao.id != 1 || (row.obj.StatusAtualSolicitacaos[0].concluido == 1 && row.obj.StatusAtualSolicitacaos[0].StatusSolicitacao.id == 1)) {
+          alert("Você não pode alterar esta solicitação após encaminhada!")
+          return false;
+        }
+
+        storage.setItem("descricao", row.descricao)
+
+        Object.keys(row.obj.SolicitacaoProfissional).map(i => {
+          storage.setItem(i, row.obj.SolicitacaoProfissional[i])
+        });
+
+        window.location.href = '/FormularioProfissional/'+row.id
+      }
+      }>
+        <FaEdit />
+      </a>
+      <a onClick={() => {
+        window.location.href = '/FormularioProfissionalPreview/'+row.id
+      }}><FaSearchPlus /></a>
+      </div>
+
+    ),
+    ignoreRowClick: true,
+    allowOverflow: true,
+    button: true,
+  },
 ];
 
-class Login extends Component {
+class MinhasSolicitacoes extends Component {
+
+  state = {solicitacoes: []}
+
+  constructor (props) {
+    super(props);
+    this.getData();
+  }
+
+  async getData () {
+    let service = new SolicitacoesSolicitanteService();
+    service.getAll().then(res => res.json())
+    .then((result) => {
+      console.log(result);
+      let solicitacoes = [];
+      result.map(d => {
+        solicitacoes.push({
+          'id': d.id,
+          'descricao': d.descricao,
+          'tipo': d.TipoSolicitacao.descricao_tipo,
+          'status': d.StatusAtualSolicitacaos[0].StatusSolicitacao.descricao,
+          'concluido': d.StatusAtualSolicitacaos[0].concluido == 0 ? 'NÃO' : 'SIM',
+          'data': Date.isoTODatePtBr(d.dt_solicitacao),
+          'obj': d
+        })
+      })
+
+      this.setState({solicitacoes: solicitacoes})
+    }, (error) => {
+      alert("Erro! Contate o Administrador");
+      console.log(error)
+    })
+  }
+
   render() {
     return (
       <div className="App">
+        <div className="breadcrumbs">
+          <Link className="linkBreadCrumb" to="/Inicial">Home</Link> /
+          <a>Solicitações</a>
+        </div>
         <div className="ContainerSolicitacoes">
           <div className="dataTable">
                     <DataTable
                     title="Solicitações"
                     columns={columns}
-                    data={solicitacoes}
+                    data={this.state.solicitacoes}
                     responsive={true}
                     allowOverflow={false}
                     customTheme={custonTheme}
@@ -128,4 +189,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default  MinhasSolicitacoes;
